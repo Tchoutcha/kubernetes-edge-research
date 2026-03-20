@@ -1,0 +1,284 @@
+workflow_name: text_workflow_medium
+functions:
+  - name: trigger
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_trigger
+
+  - name: text_data_gen_1
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_data_gen
+
+  - name: text_sort_1
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_sort
+
+  - name: text_data_gen_2
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_data_gen
+
+  - name: text_sort_2
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_sort
+
+  - name: text_data_gen_3
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_data_gen
+
+  - name: text_sort_3
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_sort
+
+  - name: text_data_gen_4
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_data_gen
+
+  - name: text_sort_4
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_sort
+
+  - name: text_data_gen_5
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_data_gen
+
+  - name: text_sort_5
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_sort
+
+  - name: text_data_gen_6
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_data_gen
+
+  - name: text_sort_6
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_sort
+
+  - name: text_data_gen_7
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_data_gen
+
+  - name: text_sort_7
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_sort
+
+  - name: text_data_gen_8
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_data_gen
+
+  - name: text_sort_8
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_sort
+
+  - name: text_data_gen_9
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_data_gen
+
+  - name: text_sort_9
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_sort
+
+  - name: text_data_gen_10
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_data_gen
+
+  - name: text_sort_10
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_text_sort
+
+  - name: aggregate_lines
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_aggregate_lines
+
+  - name: merge_aggregate
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_merge_aggregate
+
+  - name: single_string
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_single_string
+
+  - name: encrypt
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:text_encrypt
+
+dependencies:
+  - from: trigger
+    to: text_data_gen_1
+    data_size: 0.019865
+
+  - from: trigger
+    to: text_data_gen_2
+    data_size: 0.019865
+
+  - from: trigger
+    to: text_data_gen_3
+    data_size: 0.019865
+
+  - from: trigger
+    to: text_data_gen_4
+    data_size: 0.019865
+
+  - from: trigger
+    to: text_data_gen_5
+    data_size: 0.019865
+
+  - from: trigger
+    to: text_data_gen_6
+    data_size: 0.019865
+
+  - from: trigger
+    to: text_data_gen_7
+    data_size: 0.019865
+
+  - from: trigger
+    to: text_data_gen_8
+    data_size: 0.019865
+
+  - from: trigger
+    to: text_data_gen_9
+    data_size: 0.019865
+
+  - from: trigger
+    to: text_data_gen_10
+    data_size: 0.019865
+
+  - from: text_data_gen_1
+    to: text_sort_1
+    data_size: 0.001
+
+  - from: text_data_gen_2
+    to: text_sort_2
+    data_size: 0.001
+
+  - from: text_data_gen_3
+    to: text_sort_3
+    data_size: 0.001
+
+  - from: text_data_gen_4
+    to: text_sort_4
+    data_size: 0.001
+
+  - from: text_data_gen_5
+    to: text_sort_5
+    data_size: 0.001
+
+  - from: text_data_gen_6
+    to: text_sort_6
+    data_size: 0.001
+
+  - from: text_data_gen_7
+    to: text_sort_7
+    data_size: 0.001
+
+  - from: text_data_gen_8
+    to: text_sort_8
+    data_size: 0.001
+
+  - from: text_data_gen_9
+    to: text_sort_9
+    data_size: 0.001
+
+  - from: text_data_gen_10
+    to: text_sort_10
+    data_size: 0.001
+
+  - from: text_sort_1
+    to: aggregate_lines
+    data_size: 0.019865
+
+  - from: text_sort_2
+    to: aggregate_lines
+    data_size: 0.019865
+
+  - from: text_sort_3
+    to: aggregate_lines
+    data_size: 0.019865
+
+  - from: text_sort_4
+    to: aggregate_lines
+    data_size: 0.019865
+
+  - from: text_sort_5
+    to: aggregate_lines
+    data_size: 0.019865
+
+  - from: text_sort_6
+    to: aggregate_lines
+    data_size: 0.019865
+
+  - from: text_sort_7
+    to: aggregate_lines
+    data_size: 0.019865
+
+  - from: text_sort_8
+    to: aggregate_lines
+    data_size: 0.019865
+
+  - from: text_sort_9
+    to: aggregate_lines
+    data_size: 0.019865
+
+  - from: text_sort_10
+    to: aggregate_lines
+    data_size: 0.019865
+
+  - from: aggregate_lines
+    to: merge_aggregate
+    data_size: 0.039701
+
+  - from: merge_aggregate
+    to: single_string
+    data_size: 0.11523
+
+  - from: single_string
+    to: encrypt
+    data_size: 0.038175

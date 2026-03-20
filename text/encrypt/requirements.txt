@@ -1,0 +1,4 @@
+pyaes
+py-cpuinfo
+fastapi
+uvicorn

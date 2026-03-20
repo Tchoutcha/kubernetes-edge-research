@@ -1,0 +1,96 @@
+workflow_name: multimedia_workflow_medium
+functions:
+  - name: fetch_data
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:multimedia_fetch_data
+
+  - name: grayscale
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:multimedia_grayscale
+
+  - name: flip
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:multimedia_flip
+
+  - name: rotate
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:multimedia_rotate
+
+  - name: resize
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:multimedia_resize
+
+  - name: alexnet
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:multimedia_alexnet
+
+  - name: resnet
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:multimedia_resnet
+
+  - name: mobilenet
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:multimedia_mobilenet
+
+  - name: aggregator
+    requirements:
+      cpu: 500m
+      ram: 128Mi
+    image: arjiba/profiling:multimedia_aggregator
+
+dependencies:
+  - from: fetch_data
+    to: grayscale
+    data_size: 0.239808
+
+  - from: grayscale
+    to: flip
+    data_size: 0.228467
+
+  - from: flip
+    to: rotate
+    data_size: 0.22804
+
+  - from: rotate
+    to: resize
+    data_size: 0.231961
+
+  - from: resize
+    to: alexnet
+    data_size: 0.018445
+
+  - from: resize
+    to: resnet
+    data_size: 0.018445
+
+  - from: resize
+    to: mobilenet
+    data_size: 0.018445
+
+  - from: alexnet
+    to: aggregator
+    data_size: 2.7e-05
+
+  - from: resnet
+    to: aggregator
+    data_size: 2.1e-05
+
+  - from: mobilenet
+    to: aggregator
+    data_size: 2.1e-05
