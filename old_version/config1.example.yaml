@@ -1,0 +1,98 @@
+# Config du contrôleur adaptatif -- copier vers config.yaml et adapter.
+#
+# Résolution au démarrage (cf. controller.py) : --config explicite >
+# $ACPC_CONFIG > ./config.yaml > /etc/adaptive-controller/config.yaml >
+# valeurs par défaut sûres.
+#
+# Toute la connaissance spécifique au hardware/déploiement vit ici, pas
+# dans le code -- le code (policy.py, cluster_actions.py, controller.py)
+# reste générique et réutilisable sur un autre cluster.
+
+controller:
+  poll_interval_seconds: 0.5
+  initial_mode: auto      # auto : détecté depuis l'état du cluster (taint
+                           # présent -> apiserver, sinon local1core) au
+                           # démarrage. Sinon : local1core | apiserver
+  dry_run: false
+
+# Seuils génériques de la politique de décision (Algorithm 1, voir
+# ALGORITHM.md). Ce sont les seuls paramètres qui comptent scientifiquement
+# -- tout le reste de ce fichier est un détail d'implémentation/déploiement.
+policy:
+  low_threshold_rps: 20
+  high_threshold_rps: 50
+  required_high_samples: 3   # confirmations pour MONTER vers apiserver --
+                              # peu, pour protéger le control plane vite
+  required_low_samples: 60    # confirmations pour REDESCENDRE vers local1core
+                              # -- plus, pour éviter une désescalade
+                              # prématurée suivie d'un re-pic coûteux
+  cooldown_seconds: 60        # délai minimum entre deux bascules
+
+# Source du débit -- interchangeable, voir metrics_provider.py. "kourier"
+# recommandé (débit côté serveur, aucune config Prometheus nécessaire).
+metrics:
+  provider: kourier
+  namespace: kourier-system
+  pod_prefix: 3scale-kourier-gateway
+  port: 9000
+  timeout_seconds: 3
+  max_sample_interval_seconds: 5   # au-delà, un delta est invalidé plutôt
+                                     # que moyenné sur toute la période
+                                     # (ex: Kourier injoignable un moment)
+  # ssh_proxy : trois valeurs possibles, à ne pas confondre --
+  #   - omis, ou "auto"    -> alias SSH du master, pertinent si le
+  #                            contrôleur tourne DEPUIS l'extérieur du
+  #                            cluster (ex: machine de développement)
+  #   - null (explicite)   -> accès réseau DIRECT, pas de relais SSH --
+  #                            pertinent quand le contrôleur tourne DEPUIS
+  #                            un nœud du cluster (déjà sur le réseau
+  #                            overlay, les IP de pods sont joignables
+  #                            sans détour)
+  #   - alias SSH explicite (ex: worker9) -> utilisé tel quel
+  ssh_proxy: null   # déploiement in-cluster (ex: sur pi-worker5)
+
+cluster:
+  master_node: auto        # auto : découvert via master_label_selector.
+                            # Renseigner explicitement (ex: pi-worker1) si
+                            # l'auto-détection échoue ou est ambiguë.
+  master_label_selector: node-role.kubernetes.io/control-plane
+
+  # Correspondance nom de nœud K8s -> alias SSH (~/.ssh/config). Nécessaire
+  # quand les noms de nœuds K8s ne sont pas des hostnames résolvables
+  # directement depuis la machine de contrôle. Laisser vide {} si les noms
+  # K8s sont directement joignables en SSH.
+  ssh_aliases:
+    pi-worker1: worker1
+    pi-worker2: worker2
+    pi-worker3: worker3
+    pi-worker4: worker4
+    pi-worker5: worker5
+    pc0: worker6
+    pc1: worker7
+    pc2: worker8
+    pc3: worker11
+    pc4: worker10
+    pc5: worker9
+    pc6: worker12
+    pc7: worker13
+    pc8: worker14
+
+  scheduler_namespace: kube-system
+  scheduler_prefix: my-scheduler
+  scheduler_process: /usr/local/bin/kube-scheduler
+  dedicated_core: 1        # core CPU cible pour taskset en mode local1core
+
+components:
+  activator:
+    namespace: knative-serving
+    prefix: activator
+  autoscaler:
+    namespace: knative-serving
+    prefix: autoscaler
+  kourier:
+    namespace: kourier-system
+    prefix: 3scale-kourier-gateway
+
+logging:
+  format: csv    # csv | jsonl
+  path: transitions.csv

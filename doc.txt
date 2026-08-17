@@ -1,0 +1,79 @@
+                  +----------------------+
+                  |  Metrics Provider    |
+                  |  (Kourier)           |
+                  +----------------------+
+                             │
+                             │ request_rate
+                             ▼
+                  +----------------------+
+                  |  Decision Policy     |
+                  +----------------------+
+                             │
+                             │ desired_mode
+                             ▼
+                  +----------------------+
+                  | Cluster Actions      |
+                  +----------------------+
+                             │
+                             ▼
+                     Kubernetes Cluster
+
+
+
+Algorithm 1 Adaptive Control Plane Controller
+
+current_mode ← DetectCurrentMode()
+
+loop every POLL_INTERVAL do
+
+    request_rate ← MetricsProvider.get_rate()
+
+    if request_rate is unavailable then
+        continue
+
+    desired_mode ← Policy.decide(
+                        request_rate,
+                        current_mode
+                    )
+
+    if desired_mode ≠ current_mode then
+
+        ClusterActions.apply(desired_mode)
+
+        current_mode ← desired_mode
+
+end loop                     
+
+
+
+Algorithm 0 Request Rate Measurement
+
+Input:
+    PreviousCounter
+    PreviousTimestamp
+
+Output:
+    CurrentRequestRate
+
+1:  Discover the active Kourier gateway
+2:  Read the cumulative HTTP request counter
+3:  Read the current timestamp
+
+4:  if no previous sample exists then
+5:      Store current counter and timestamp
+6:      return UNAVAILABLE
+7:  end if
+
+8:  if gateway changed or counter reset then
+9:      Store current counter and timestamp
+10:     return UNAVAILABLE
+11: end if
+
+12: elapsed ← CurrentTimestamp − PreviousTimestamp
+13: delta   ← CurrentCounter − PreviousCounter
+
+14: RequestRate ← max(0, delta / elapsed)
+
+15: Store current counter and timestamp
+
+16: return RequestRate
