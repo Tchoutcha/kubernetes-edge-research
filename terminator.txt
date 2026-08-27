@@ -1,0 +1,1000 @@
+ 1068  sudo rm -rf /var/lib/kubelet
+ 1069  sudo rm -rf /var/lib/cni
+ 1070  rm -rf $HOME/.kube
+ 1071  sudo rm -rf /etc/cni/net.d
+ 1072  sudo rm -rf /opt/cni/bin
+ 1073  sudo ufw delete allow 6443/tcp
+ 1074  sudo ufw delete allow 2379:2380/tcp
+ 1075  sudo ufw delete allow 10250/tcp
+ 1076  sudo ufw delete allow 10251/tcp
+ 1077  sudo ufw delete allow 10255/tcp
+ 1078  sudo ufw delete allow 10252/tcp
+ 1079  sudo docker system prune -a
+ 1080  which kubelet
+ 1081  which kubectl
+ 1082  snap list
+ 1083  sudo snap remove k3s
+ 1084  ps aux | grep kube
+ 1085  sudo ufw status
+ 1086  sudo ufw disable
+ 1087  sudo swapoff -a
+ 1088  sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+ 1089  free -h
+ 1090  swapon --show
+ 1091  sudo tee /etc/modules-load.d/containerd.conf <<EOF
+ 1092  sudo modprobe overlay
+ 1093  sudo modprobe br_netfilter
+ 1094  echo -e "overlay\nbr_netfilter" | sudo tee -a /etc/modules
+ 1095  sudo tee /etc/sysctl.d/kubernetes.conf <<EOF
+ 1096  net.bridge.bridge-nf-call-ip6tables = 1
+ 1097  net.bridge.bridge-nf-call-iptables = 1
+ 1098  net.ipv4.ip_forward = 1
+ 1099  EOF
+ 1100  sudo sysctl --system
+ 1101  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+ 1102  sudo apt update
+ 1103  sudo apt install -y curl gnupg2 software-properties-common apt-transport-https ca-certificates containerd.io
+ 1104  sudo containerd config default | sudo tee /etc/containerd/config.toml >/dev/null 2>&1
+ 1105  sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
+ 1106  sudo systemctl restart containerd
+ 1107  sudo systemctl enable containerd
+ 1108  systemctl status containerd
+ 1109  sudo apt-get update
+ 1110  sudo apt-get install -y curl ca-certificates gnupg
+ 1111  sudo apt-get install -y kubelet kubeadm kubectl
+ 1112  sudo apt-mark hold kubelet kubeadm kubectl
+ 1113  which kubelet && which kubeadm && which kubectl
+ 1114  kubelet --version
+ 1115  kubeadm version
+ 1116  kubectl version --client
+ 1117  grep kubernetes /etc/apt/sources.list.d/*.list
+ 1118  sudo kubectl get pods 
+ 1119  sudo reboot
+ 1120  ssh worker4@131.254.100.73
+ 1121  ssh worker3@131.254.100.75
+ 1122  ssh worker1@131.254.100.72
+ 1123  ssh worker2@131.254.100.71
+ 1124  journalctl -u k3s -f
+ 1125  k3s version
+ 1126  systemctl status k3s
+ 1127  k3s --version
+ 1128  sudo rm -f /usr/local/bin/k3s
+ 1129  k3s --version
+ 1130  sudo systemctl disable k3s
+ 1131  sudo systemctl daemon-reload
+ 1132  sudo systemctl stop k3s
+ 1133  sudo find / -name k3s
+ 1134  sudo rm -rf /var/lib/rancher
+ 1135  sudo find / -name k3s
+ 1136  sudo swapoff -a
+ 1137  sudo sed -i '/ swap / s/^/#/' /etc/fstab
+ 1138  sudo apt update && sudo apt upgrade -y
+ 1139  sudo apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
+ 1140  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+ 1141  docker version
+ 1142  sudo apt update && sudo apt install -y apt-transport-https ca-certificates curl
+ 1143  sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+ 1144  echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+ 1145  sudo apt update
+ 1146  curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+ 1147  echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+ 1148  sudo apt-get update
+ 1149  sudo apt-get install -y kubelet kubeadm kubectl
+ 1150  sudo apt-mark hold kubelet kubeadm kubectl
+ 1151  kubectl get pods -A
+ 1152  kubeadm version
+ 1153  kubectl version --short
+ 1154  sudo apt install -y apt-transport-https ca-certificates curl
+ 1155  sudo apt install -y kubectl
+ 1156  kubectl version --short
+ 1157  which kubectl
+ 1158  type kubectl
+ 1159  hash -r
+ 1160  kubectl version --short
+ 1161  kubectl version
+ 1162  kubectl get pods -A
+ 1163  kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+ 1164  sudo systemctl enable --now kubelet
+ 1165  cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+ 1166  net.ipv4.ip_forward = 1
+ 1167  EOF
+ 1168  sudo sysctl --system
+ 1169  ip route show
+ 1170  ip a
+ 1171  sudo kubeadm init --apiserver-advertise-address=131.254.23.69 --pod-network-cidr=192.168.0.0/16
+ 1172  sudo apt install -y conntrack
+ 1173  sudo apt install -y containerd
+ 1174  sudo mkdir -p /etc/containerd
+ 1175  sudo containerd config default | sudo tee /etc/containerd/config.toml
+ 1176  sudo systemctl restart containerd
+ 1177  sudo systemctl enable containerd
+ 1178  sudo systemctl status containerd
+ 1179  which conntrack
+ 1180  sudo crictl info
+ 1181  sudo kubeadm init --apiserver-advertise-address=131.254.23.69 --pod-network-cidr=192.168.0.0/16
+ 1182  kubectl get nodes
+ 1183  ssh worker5@131.254.100.74
+ 1184  ssh worker3@131.254.100.75
+ 1185  ssh worker4@131.254.100.73
+ 1186  ip a
+ 1187  kubectl get nodes
+ 1188  sudo k3s kubectl get nodes
+ 1189  sudo k3s kubectl get pods -A
+ 1190  sudo k3s kubectl get nodes
+ 1191  sudo k3s kubectl get pods -A
+ 1192  kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.20.1/serving-crds.yaml
+ 1193  curl -LO https://github.com/knative/serving/releases/download/knative-v1.20.1/serving-crds.yaml
+ 1194  kubectl apply -f serving-crds.yaml
+ 1195  kubectl apply --validate=false -f serving-crds.yaml
+ 1196  env | grep -i proxy
+ 1197  kubectl config view --minify
+ 1198  export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+ 1199  kubectl get nodes
+ 1200  sudo kubectl get nodes
+ 1201  kubectl get nodes
+ 1202  mkdir -p ~/.kube
+ 1203  sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+ 1204  sudo chown stchoutc:stchoutc ~/.kube/config
+ 1205  chmod 600 ~/.kube/config
+ 1206  sed -i "s/127.0.0.1/$(hostname -I | awk '{print $1}')/g" ~/.kube/config
+ 1207  unset KUBECONFIG
+ 1208  kubectl get nodes
+ 1209  kubectl get pods -n knative-serving
+ 1210  kubectl get pods -n kourier-system
+ 1211  kubectl get nodes --show-labels
+ 1212  kubectl get nodes 
+ 1213  kubectl get pods -n knative-eventing
+ 1214  kubectl get pods -n knative-serving
+ 1215  ip a
+ 1216  kubectl get svc -n kourier-system
+ 1217  kubectl get nodes 
+ 1218  kn service list
+ 1219  kubectl get pods -o wide
+ 1220  kubectl get nodes 
+ 1221  kubectl get pods -o wide
+ 1222  kubectl get pods -w
+ 1223  clear
+ 1224  kubectl get pods -w
+ 1225  kubectl get pod hello-00004-deployment-7cb4f5d7f6-xb5vt -o wide
+ 1226  kubectl delete pod hello-00003-deployment-995c8f67d-wjtrj
+ 1227  kubectl get pod hello-00004-deployment-7cb4f5d7f6-xb5vt -o wide
+ 1228  kubectl get pods -w
+ 1229  kubectl delete pod -l serving.knative.dev/service=hello
+ 1230  kubectl delete pod hello-00004-deployment-7cb4f5d7f6-xb5vt
+ 1231  kubectl get pods -w
+ 1232  kubectl delete pod hello-00006-deployment-6cc6776dcb-m86lf
+ 1233  kubectl get pods -w
+ 1234  kubectl delete pod -l serving.knative.dev/service=hello
+ 1235  kubectl get pods -w
+ 1236  kubectl logs hello-test-00004-deployment-648f8b5cd-5qdhd -c user-container
+ 1237  curl http://hello-test.default.example.com
+ 1238  curl http://localhost:8080
+ 1239  kubectl get pods -w
+ 1240  kubectl get pod hello-test-00005-deployment-5f8dd8cc94-9z2kd -o wide
+ 1241  curl http://hello-test.default.example.com
+ 1242  sudo nano /etc/hosts
+ 1243  curl http://hello-test.default.example.com
+ 1244  kubectl get svc -n knative-serving
+ 1245  history > historiq1.txt
+ 1246  kubectl get pods -o wide
+ 1247  kubectl get pods -
+ 1248  kubectl get pods 
+ 1249  kubectl get nodes
+ 1250  kubectl get svc -n knative-serving net-kourier-controller
+ 1251  wscat -c ws://131.254.23.69:30815/ws
+ 1252  kubectl get pods -o wide
+ 1253  kubectl describe pod hello-00001-deployment-799d86986d-dpbrp
+ 1254  kubectl get pods -o wide
+ 1255  clear
+ 1256  kubectl get pods -o wide
+ 1257  kubectl logs hello-00005-deployment-7695f5c99d-mwc2b -c queue-proxy
+ 1258  kubectl logs hello-00006-deployment-6cc6776dcb-m86lf -c queue-proxy
+ 1259  kubectl describe pod hello-test-00001-deployment-cbcc4f6b4-5d9wc
+ 1260  kubectl logs hello-test-00001-deployment-cbcc4f6b4-5d9wc -c queue-proxy
+ 1261  kubectl logs hello-test-00001-deployment-cbcc4f6b4-5d9wc -c user-container
+ 1262  git clone https://github.com/knative/docs.git
+ 1263  cd docs/serving/samples/helloworld-go
+ 1264  cd docs/
+ 1265  ls
+ 1266  cd code-samples/
+ 1267  ls
+ 1268  cd serving/
+ 1269  ls
+ 1270  cd hello-world/
+ 1271  ls
+ 1272  docker buildx build --platform linux/arm64 -t helloworld-go-arm64 --load .
+ 1273  docker version
+ 1274  sudo apt update
+ 1275  sudo apt install ca-certificates curl gnupg lsb-release -y
+ 1276  sudo mkdir -p /etc/apt/keyrings
+ 1277  url -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+ 1278  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+ 1279  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+ 1280    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+ 1281  sudo apt update
+ 1282  sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+ 1283  sudo usermod -aG docker $USER
+ 1284  docker version
+ 1285  docker buildx build --platform linux/arm64 -t helloworld-go-arm64 --load .
+ 1286  ls
+ 1287  cd helloworld-go/
+ 1288  docker buildx build --platform linux/arm64 -t helloworld-go-arm64 --load .
+ 1289  docker run --rm --privileged tonistiigi/binfmt --install all
+ 1290  docker run --rm --platform=linux/arm64 alpine uname -m
+ 1291  docker buildx build --platform linux/arm64 -t helloworld-go-arm64 --load .
+ 1292  docker login
+ 1293  docker push sandjong/helloworld-go-arm64:latest
+ 1294  docker tag helloworld-go-arm64 sandjong/helloworld-go-arm64:latest
+ 1295  docker push sandjong/helloworld-go-arm64:latest
+ 1296  kubectl describe pod hello-test-00005-deployment-5f8dd8cc94-9z2kd
+ 1297  history > mon_historiq3.txt
+ 1298  cd ..
+ 1299  ls
+ 1300  cd websockets-go/
+ 1301  ls
+ 1302  docker buildx build --platform linux/arm64 -t websockets-go-arm64 --load .
+ 1303  docker tag  websockets-go-arm64 sandjong/websockets-go-arm64:latest
+ 1304  docker push  sandjong/websockets-go-arm64:latest
+ 1305  ls 
+ 1306  cd config/
+ 1307  ls
+ 1308  kubectl apply -f service.yaml
+ 1309  kubectl get ksvc websockets-server
+ 1310  npm install -g wscat
+ 1311  sudo npm install -g wscat
+ 1312  sudo npm install -g npm@11.7.0
+ 1313  npm fund
+ 1314  kubectl run --rm -i --tty wscat --image=monotykamary/wscat --restart=Never -- -c ws://websockets-server.default.svc.cluster.local/ws
+ 1315  kubectl get ksvc websockets-server
+ 1316  kubectl port-forward svc/websockets-server 8080:8080
+ 1317  kubectl get svc -n knative-serving
+ 1318  kubectl port-forward -n knative-serving svc/net-kourier-controller 8080:80
+ 1319  kubectl port-forward -n knative-serving svc/net-kourier-controller 8080:18000
+ 1320  sudo lsof -i :8080
+ 1321  sudo systemctl stop faasd
+ 1322  sudo systemctl status faasd
+ 1323  sudo systemctl disable faasd
+ 1324  sudo rm -rf /var/lib/faasd /etc/systemd/system/faasd.service
+ 1325  sudo systemctl daemon-reload
+ 1326  sudo lsof -i :8080
+ 1327  kubectl port-forward -n knative-serving svc/net-kourier-controller 8080:18000
+ 1328  kubectl run --rm -i --tty wscat --image=monotykamary/wscat --restart=Never -- -c ws://websockets-server.default.svc.cluster.local/ws
+ 1329  kubectl run --rm -i --tty wscat   --image=monotykamary/wscat   --restart=Never   -- ws://websockets-server.default.svc.cluster.local/ws
+ 1330  docker buildx build --platform linux/arm64 -t sandjong/wscat-arm64:latest .
+ 1331  mkdir wscat-arm64
+ 1332  cd wscat-arm64
+ 1333  cat << 'EOF' > Dockerfile
+ 1334  FROM node:20-alpine
+ 1335  # Installer wscat globalement
+ 1336  RUN npm install -g wscat
+ 1337  # Par défaut, l'entrypoint est wscat
+ 1338  ENTRYPOINT ["wscat"]
+ 1339  EOF
+ 1340  docker buildx build --platform linux/arm64 -t sandjong/wscat-arm64:latest .
+ 1341  docker buildx build --platform linux/arm64 -t sandjong/wscat-arm64:latest --push .
+ 1342  kubectl run --rm -i --tty wscat   --image=sandjong/wscat-arm64:latest   --restart=Never   -- ws://websockets-server.default.svc.cluster.local/ws
+ 1343  kubectl run -i --tty wscat   --image=sandjong/wscat-arm64:latest   --restart=Never   -- ws://websockets-server.default.svc.cluster.local/ws
+ 1344  kubectl run -i --tty wscat   --image=sandjong/wscat-arm64:latest   --restart=Never   -- -c ws://websockets-server.default.svc.cluster.local/ws
+ 1345  kubectl delete pod wscat
+ 1346  kubectl run -i --tty wscat   --image=sandjong/wscat-arm64:latest   --restart=Never   -- -c ws://websockets-server.default.svc.cluster.local/ws
+ 1347  kubectl run -it --rm wscat-test --image=sandjong/wscat-arm64:latest --restart=Never -- ws://websockets-server.default.svc.cluster.local/ws
+ 1348  ssh worker1@131.254.100.72
+ 1349  sudo systemctl enable --now kubelet
+ 1350  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+ 1351  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+ 1352  kubectl get node
+ 1353  kubectl get node -o wide
+ 1354  kubectl get node -o jsonpath='{.items[*].status.nodeInfo.cgroupDriver}'
+ 1355  kubectl get node -o wide
+ 1356  sudo systemctl stop kube-proxy
+ 1357  kubectl get node -o wide
+ 1358  clear
+ 1359  history
+ 1360  sudo systemctl stop k3s
+ 1361  sudo systemctl stop containerd
+ 1362  sudo killall k3s
+ 1363  sudo killall containerd
+ 1364  ps aux | grep -E 'k3s|kube|containerd'
+ 1365  sudo rm -rf /var/lib/rancher/k3s /etc/rancher/k3s /etc/systemd/system/k3s.service* /usr/local/bin/k3s
+ 1366  sudo rm -rf /var/lib/containerd
+ 1367  sudo ufw allow 6443/tcp
+ 1368  sudo rm -rf /run/k3s
+ 1369  sudo systemctl start k3s
+ 1370  journalctl -xeu k3s.service
+ 1371  sudo systemctl stop k3s
+ 1372  sudo umount -l /run/k3s/containerd/io.containerd.runtime.v2.task/k8s.io/*/rootfs
+ 1373  sudo rm -rf /var/lib/rancher/k3s/agent/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/*
+ 1374  sudo systemctl start k3s
+ 1375  sudo systemctl status k3s.service -l
+ 1376  sudo rm -rf /var/lib/containerd
+ 1377  sudo rm -rf /run/k3s
+ 1378  sudo rm -rf /var/lib/containerd
+ 1379  sudo rm -rf /var/lib/rancher/k3s/agent/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/*
+ 1380  sudo systemctl stop k3s
+ 1381  ssh worker2@131.254.100.71
+ 1382  kubectl config current-context
+ 1383  cat ~/.kube/config
+ 1384  sudo swapoff -a
+ 1385  kubeadm init --apiserver-advertise-address=131.254.23.69 --pod-network-cidr=192.168.100.0/24
+ 1386  kubeadm version
+ 1387  kubectl version --client
+ 1388  sudo apt-get install -y kubeadm=1.35.0-00 kubelet=1.35.0-00 kubectl=1.35.0-00
+ 1389  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+ 1390  sudo apt-add-repository "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+ 1391  sudo apt-get update
+ 1392  sudo apt-get install -y kubeadm=1.35.0-00 kubelet=1.35.0-00 kubectl=1.35.0-00
+ 1393  apt-cache show kubeadm | grep Version
+ 1394  apt-cache show kubelet | grep Version
+ 1395  apt-cache show kubectl | grep Version
+ 1396  kubeadm version
+ 1397  curl -LO https://dl.k8s.io/release/v1.35.0/bin/linux/amd64/kubectl
+ 1398  chmod +x ./kubectl
+ 1399  sudo mv ./kubectl /usr/local/bin/kubectl
+ 1400  kubectl version --client
+ 1401  which kubectl
+ 1402  kubectl version --client
+ 1403  sudo rm /usr/local/bin/kubectl
+ 1404  sudo mv ./kubectl /usr/local/bin/kubectl
+ 1405  curl -LO https://dl.k8s.io/release/v1.35.0/bin/linux/amd64/kubectl
+ 1406  sudo mv ./kubectl /usr/local/bin/kubectl
+ 1407  kubectl version --client
+ 1408  sudo rm /usr/bin/kubectl
+ 1409  ls
+ 1410  which kubectl
+ 1411  kubectl version --client
+ 1412  curl -LO https://dl.k8s.io/release/v1.35.0/bin/linux/amd64/kubectl
+ 1413  ls -l  kubectl 
+ 1414  chmod +x kubectl
+ 1415  sudo mv kubectl /usr/local/bin/
+ 1416  which kubectl
+ 1417  kubectl version --client
+ 1418  ls -l /usr/bin/kubectl
+ 1419  which kubectl
+ 1420  echo $PATH
+ 1421  kubectl version --client
+ 1422  hash -r
+ 1423  kubectl version --client
+ 1424  kubectl cluster-info
+ 1425  kubeadm version
+ 1426  sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+ 1427  curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.33/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+ 1428  echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.35/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+ 1429  sudo apt-get update
+ 1430  sudo apt-get install -y kubelet kubeadm
+ 1431  kubeadm version
+ 1432  kubelet  version
+ 1433  sudo apt-get install -y kubeadm=1.35.0-00
+ 1434  curl -LO https://dl.k8s.io/release/v1.35.0/bin/linux/amd64/kubeadm
+ 1435  chmod +x kubeadm
+ 1436  hash -r
+ 1437  sudo mv kubeadm /usr/local/bin/
+ 1438  kubeadm version
+ 1439  curl -LO https://dl.k8s.io/release/v1.35.0/bin/linux/amd64/kubelet
+ 1440  chmod +x kubelet
+ 1441  hash -r
+ 1442  sudo mv kubelet /usr/local/bin/
+ 1443  kubelet --version
+ 1444  sudo systemctl restart kubelet
+ 1445  sudo systemctl restart kubeadm
+ 1446  sudo systemctl restart kubectl
+ 1447  sudo systemctl status kubelet
+ 1448  sudo systemctl restart kubelet
+ 1449  sudo systemctl status kubelet
+ 1450  sudo journalctl -u kubelet -n 50
+ 1451  sudo nano /usr/lib/systemd/system/kubelet.service
+ 1452  sudo systemctl daemon-reload
+ 1453  sudo systemctl status kubelet
+ 1454  sudo ls -l /var/lib/kubelet/config.yaml
+ 1455  sudo nano /usr/lib/systemd/system/kubelet.service
+ 1456  kubeadm init --apiserver-advertise-address=131.254.23.69 --pod-network-cidr=192.168.100.0/24
+ 1457  sudo kubeadm reset
+ 1458  sudo kubeadm init --apiserver-advertise-address=131.254.23.69 --pod-network-cidr=192.168.100.0/24
+ 1459  sudo systemctl status kubelet
+ 1460  sudo kubeadm reset
+ 1461  sudo systemctl status kubelet
+ 1462  sudo kubeadm init --apiserver-advertise-address=131.254.23.69 --pod-network-cidr=192.168.100.0/24
+ 1463  kubelet --version
+ 1464  kubectl version --client
+ 1465  containerd --version
+ 1466  ps aux | grep kubelet | grep cgroup
+ 1467  crictl info | grep -i cgroup
+ 1468  sudo crictl --runtime-endpoint unix:///run/containerd/containerd.sock info | grep -i cgroup
+ 1469  sudo systemctl stop kubelet
+ 1470  sudo systemctl stop kube-proxy
+ 1471  sudo systemctl disable kubelet
+ 1472  sudo apt purge -y kubelet kubeadm kubectl kubernetes-cni
+ 1473  sudo apt purge kubelet kubeadm kubectl kubernetes-cni
+ 1474  sudo apt autoremove -y
+ 1475  sudo rm -rf /etc/kubernetes /var/lib/kubelet /var/lib/kube-proxy /var/lib/kubeadm /var/lib/etcd
+ 1476  mount | grep /var/lib/kubelet
+ 1477  sudo umount -l /var/lib/kubelet/pods/*/volumes/kubernetes.io~projected/*
+ 1478  sudo find /var/lib/kubelet/pods/ -type d -name "kubernetes.io~projected" -exec sudo umount -l {} \;
+ 1479  sudo rm -rf /etc/kubernetes /var/lib/kubelet /var/lib/kube-proxy /var/lib/kubeadm /var/lib/etcd
+ 1480  sudo systemctl stop kubelet
+ 1481  sudo rm -rf /etc/kubernetes /var/lib/kubelet /var/lib/kube-proxy /var/lib/kubeadm /var/lib/etcd
+ 1482  sudo apt purge -y kubelet kubeadm kubectl kubernetes-cni
+ 1483  sudo apt autoremove -y
+ 1484  dpkg -l | grep kube
+ 1485  sudo iptables -F
+ 1486  sudo iptables -t nat -F
+ 1487  sudo iptables -t mangle -F
+ 1488  sudo rm -rf /etc/cni/net.d
+ 1489  sudo iptables -X
+ 1490  sudo rm -rf /etc/kubernetes 
+ 1491  sudo ls  /var/lib/
+ 1492  sudo ls  /var/lib/kubelet
+ 1493  sudo rm -rf /var/lib/kubelet
+ 1494  for m in $(mount | grep kube-api-access | awk '{print $3}'); do   sudo umount -f -l "$m"; done
+ 1495  mount | grep kube-api-access
+ 1496  sudo rm -rf /var/lib/kubelet
+ 1497  sudo rm -rf /var/lib/kubelet /etc/kubernetes /var/lib/kube-proxy /var/lib/kubeadm /var/lib/etcd
+ 1498  sudo apt clean
+ 1499  sudo apt autoclean
+ 1500  sudo apt autoremove -y
+ 1501  sudo rm -rf /tmp/*
+ 1502  sudo rm -rf /var/tmp/*
+ 1503  sudo journalctl --vacuum-size=100M
+ 1504  sudo apt update && sudo apt upgrade -y
+ 1505  sudo apt upgrade -y
+ 1506  sudo swapoff -a
+ 1507  sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+ 1508  sudo apt install -y curl open-iscsi nfs-common
+ 1509  curl -sfL https://get.k3s.io | sh -s - server   --cluster-init   --write-kubeconfig-mode 644   --disable traefik   --tls-san=k3s.votre-domaine.com   --node-taint ""
+ 1510  sudo systemctl status containerd
+ 1511  sudo crictl ps
+ 1512  sudo systemctl stop containerd
+ 1513  sudo rm -rf /etc/rancher/k3s /var/lib/rancher/k3s /var/lib/kubelet /var/lib/kube-proxy /var/lib/kubeadm /var/lib/etcd
+ 1514  sudo crictl ps -a
+ 1515  sudo systemctl stop containerd
+ 1516  sudo rm -rf /etc/rancher/k3s             /var/lib/rancher/k3s             /var/lib/kubelet             /var/lib/kube-proxy             /var/lib/kubeadm             /var/lib/etcd             ~/.kube
+ 1517  sudo umount -f -l /var/lib/kubelet/pods/*/volumes/kubernetes.io~projected/*
+ 1518  sudo systemctl start containerd
+ 1519  sudo crictl ps -a
+ 1520  sudo systemctl status k3s
+ 1521  curl -sfL https://get.k3s.io | sh -s - server   --cluster-init   --write-kubeconfig-mode 644   --disable traefik   --tls-san=k3s.votre-domaine.com   --node-taint ""
+ 1522  sudo systemctl status k3s
+ 1523  sudo systemctl stop k3s
+ 1524  sudo systemctl stop containerd
+ 1525  sudo rm -rf /etc/rancher/k3s             /var/lib/rancher/k3s             /var/lib/kubelet             /var/lib/kube-proxy             /var/lib/kubeadm             /var/lib/etcd             ~/.kube
+ 1526  sudo umount -f -l /var/lib/kubelet/pods/*/volumes/kubernetes.io~projected/*
+ 1527  sudo systemctl start containerd
+ 1528  sudo systemctl status containerd
+ 1529  curl -sfL https://get.k3s.io | sh -s - server   --cluster-init   --write-kubeconfig-mode 644   --disable traefik   --node-taint ""
+ 1530  sudo systemctl stop k3s
+ 1531  sudo systemctl stop containerd
+ 1532  sudo crictl rm -f $(sudo crictl ps -aq)  
+ 1533  sudo crictl ps -a  
+ 1534  sudo rm -rf /etc/rancher/k3s             /var/lib/rancher/k3s             /var/lib/kubelet             /var/lib/kube-proxy             /var/lib/kubeadm             /var/lib/etcd             ~/.kube
+ 1535  sudo systemctl start containerd
+ 1536  sudo crictl ps -a  
+ 1537  curl -sfL https://get.k3s.io | sh -s - server   --cluster-init   --write-kubeconfig-mode 644   --disable traefik   --node-taint ""
+ 1538  sudo systemctl status k3s
+ 1539  sudo lsof -i :6443
+ 1540  sudo kill -9 20288   # kube-apiserver
+ 1541  sudo kill -9 20915   # kube-proxy
+ 1542  sudo kill -9 461792  # k3s-agent
+ 1543  sudo lsof -i :6443
+ 1544  sudo rm -rf /etc/rancher/k3s             /var/lib/rancher/k3s             /var/lib/kubelet             /var/lib/kube-proxy             /var/lib/kubeadm             /var/lib/etcd             ~/.kube
+ 1545  sudo systemctl stop containerd
+ 1546  sudo systemctl start containerd
+ 1547  sudo systemctl status containerd
+ 1548  curl -sfL https://get.k3s.io | sh -s - server   --cluster-init   --write-kubeconfig-mode 644   --disable traefik   --node-taint ""
+ 1549  sudo systemctl status k3s
+ 1550  sudo lsof -i :6443
+ 1551  sudo rm -rf /etc/rancher/k3s             /var/lib/rancher/k3s             /var/lib/kubelet             /var/lib/kube-proxy             /var/lib/kubeadm             /var/lib/etcd             ~/.kube
+ 1552  sudo systemctl restart containerd
+ 1553  sudo systemctl status containerd
+ 1554  sudo systemctl stop k3s
+ 1555  curl -sfL https://get.k3s.io | sh -s - server   --cluster-init   --write-kubeconfig-mode 644   --disable traefik   --node-taint ""
+ 1556  [INFO]  Finding release for channel stable
+ 1557  [INFO]  Using v1.34.3+k3s1 as release
+ 1558  [INFO]  Downloading hash https://github.com/k3s-io/k3s/releases/download/v1.34.3+k3s1/sha256sum-amd64.txt
+ 1559  [INFO]  Skipping binary downloaded, installed k3s matches hash
+ 1560  [INFO]  Skipping installation of SELinux RPM
+ 1561  [INFO]  Skipping /usr/local/bin/kubectl symlink to k3s, already exists
+ 1562  [INFO]  Skipping /usr/local/bin/crictl symlink to k3s, already exists
+ 1563  [INFO]  Skipping /usr/local/bin/ctr symlink to k3s, already exists
+ 1564  [INFO]  Creating killall script /usr/local/bin/k3s-killall.sh
+ 1565  [INFO]  Creating uninstall script /usr/local/bin/k3s-uninstall.sh
+ 1566  [INFO]  env: Creating environment file /etc/systemd/system/k3s.service.env
+ 1567  [INFO]  systemd: Creating service file /etc/systemd/system/k3s.service
+ 1568  [INFO]  systemd: Enabling k3s unit
+ 1569  Created symlink /etc/systemd/system/multi-user.target.wants/k3s.service → /etc/systemd/system/k3s.service.
+ 1570  [INFO]  No change detected so skipping service start
+ 1571  sudo systemctl start k3s
+ 1572  sudo systemctl stop k3s
+ 1573  sudo systemctl stop containerd
+ 1574  sudo rm -rf /etc/rancher/k3s             /var/lib/rancher/k3s             /var/lib/kubelet             /var/lib/kube-proxy             /var/lib/kubeadm             /var/lib/etcd             ~/.kube
+ 1575  ps aux | grep -E 'k3s|kube|containerd'
+ 1576  sudo systemctl stop k3s
+ 1577  sudo systemctl stop containerd
+ 1578  sudo kill -9 1985 2168 2278 2379 20043 20073 20091 20126 20706 20929 20958 468113 471075
+ 1579  ps aux | grep -E 'k3s|kube|containerd'
+ 1580  sudo kill -9 471371
+ 1581  ps aux | grep -E 'k3s|kube|containerd'
+ 1582  sudo ps aux | grep containerd-shim
+ 1583  sudo systemctl start containerd
+ 1584  sudo ps aux | grep containerd-shim
+ 1585  ps aux | grep -E 'k3s|kube|containerd'
+ 1586  sudo kill -9 471601
+ 1587  ps aux | grep -E 'k3s|kube|containerd'
+ 1588  curl -sfL https://get.k3s.io | sh -s - server   --cluster-init   --write-kubeconfig-mode 644   --disable traefik   --node-taint ""
+ 1589  sudo systemctl status k3s
+ 1590  sudo systemctl start k3s
+ 1591  sudo kill -9 472185
+ 1592  sudo systemctl start containerd
+ 1593  sudo systemctl status containerd
+ 1594  curl -sfL https://get.k3s.io | sh -s - server   --cluster-init   --write-kubeconfig-mode 644   --disable traefik   --node-taint ""
+ 1595  sudo systemctl stop k3s
+ 1596  sudo systemctl stop containerd
+ 1597  sudo killall k3s
+ 1598  sudo killall containerd
+ 1599  ps aux | grep -E 'k3s|kube|containerd'
+ 1600  sudo kill -9 475236
+ 1601  sudo rm -rf /var/lib/rancher/k3s /etc/rancher/k3s /etc/systemd/system/k3s.service* /usr/local/bin/k3s
+ 1602  sudo rm -rf /var/lib/containerd /run/containerd
+ 1603  sudo lsof -i :6443
+ 1604  sudo systemctl daemon-reexec
+ 1605  sudo systemctl start containerd
+ 1606  sudo systemctl status containerd
+ 1607  curl -sfL https://get.k3s.io | sh -s - server   --cluster-init   --write-kubeconfig-mode 644   --disable traefik
+ 1608  journalctl -xeu k3s.service
+ 1609  sudo lsof -i :6443
+ 1610  sudo lsof -i :6444
+ 1611  sudo kill -9 475843 477348
+ 1612  ps aux | grep -E 'k3s|kube|containerd'
+ 1613  sudo kill -9 477801 477838 478438 478469 478507 478780
+ 1614  sudo lsof -i :6443
+ 1615  sudo lsof -i :6444
+ 1616  sudo kill -9 479741
+ 1617  sudo lsof -i :6444
+ 1618  sudo kill -9 480083
+ 1619  sudo lsof -i :6444
+ 1620  sudo kill -9 481179
+ 1621  sudo lsof -i :6444
+ 1622  sudo lsof -i :6443
+ 1623  sudo systemctl status k3s
+ 1624  sudo systemctl start k3s
+ 1625  sudo k3s kubectl get nodes
+ 1626  sudo systemctl stop k3s
+ 1627  sudo systemctl stop containerd
+ 1628  ps aux | grep -E 'containerd-shim|k3s|kube'
+ 1629  sudo pkill -f containerd-shim
+ 1630  sudo pkill -f k3s
+ 1631  sudo pkill -f kube
+ 1632  ps aux | grep -E 'containerd-shim|k3s|kube'
+ 1633  sudo kill -9 483594
+ 1634  ps aux | grep -E 'containerd-shim|k3s|kube'
+ 1635  sudo rm -rf /var/lib/rancher/k3s
+ 1636  sudo rm -rf /run/k3s
+ 1637  sudo rm -rf /var/lib/containerd
+ 1638  mount | grep /run/k3s
+ 1639  sudo umount -lf /run/k3s/containerd/io.containerd.grpc.v1.cri/sandboxes/*/shm
+ 1640  sudo umount -lf /run/k3s/containerd/io.containerd.runtime.v2.task/k8s.io/*/rootfs
+ 1641  sudo lsof +D /run/k3s
+ 1642  sudo pkill -f k3s
+ 1643  sudo rm -rf /run/k3s
+ 1644  sudo lsof +D /run/k3s
+ 1645  sudo pkill -f k3s
+ 1646  sudo pkill -f k3s-agent
+ 1647  sudo pkill -f k3s-server
+ 1648  sudo pkill -f containerd
+ 1649  sudo pkill -f containerd-shim
+ 1650  ps aux | grep -E 'k3s|containerd'
+ 1651  sudo kill -9 484342
+ 1652  sudo rm -rf /run/k3s
+ 1653  mount | grep /run/k3s
+ 1654  sudo umount -l /run/k3s/containerd/io.containerd.grpc.v1.cri/sandboxes/*/shm
+ 1655  sudo umount -l /run/k3s/containerd/io.containerd.runtime.v2.task/k8s.io/*/rootfs
+ 1656  mount | grep /run/k3s
+ 1657  sudo umount -l /run/k3s/containerd/io.containerd.runtime.v2.task/k8s.io/*/rootfs
+ 1658  sudo umount -l $(mount | grep '/run/k3s' | awk '{print $3}')
+ 1659  sudo rm -rf /run/k3s
+ 1660  sudo systemctl stop k3s
+ 1661  sudo systemctl stop containerd
+ 1662  sudo pkill -f k3s
+ 1663  sudo pkill -f containerd
+ 1664  sudo rm -rf /var/lib/containerd
+ 1665  sudo rm -rf /var/lib/rancher/k3s
+ 1666  sudo rm -rf /run/k3s
+ 1667  sudo rm -rf /var/lib/containerd
+ 1668  sudo rm -rf /run/containerd
+ 1669  sudo systemctl disable k3s
+ 1670  sudo systemctl disable containerd
+ 1671  sudo rm -f /etc/systemd/system/k3s.service
+ 1672  sudo rm -f /etc/systemd/system/k3s.service.env
+ 1673  sudo systemctl daemon-reload
+ 1674  sudo iptables -F
+ 1675  sudo iptables -t nat -F
+ 1676  sudo iptables -t mangle -F
+ 1677  sudo iptables -X
+ 1678  sudo ip link delete cni0
+ 1679  sudo ip link delete flannel.1
+ 1680  curl -sfL https://get.k3s.io | sh -s - server --cluster-init --write-kubeconfig-mode 644 --disable traefik
+ 1681  sudo systemctl status k3s
+ 1682  sudo k3s kubectl get nodes
+ 1683  sudo systemctl status k3s
+ 1684  mount | grep /run/k3s
+ 1685  sudo lsof -i :6443
+ 1686  sudo systemctl stop k3s
+ 1687  sudo rm -rf /var/lib/rancher/k3s/server/db
+ 1688  sudo rm -rf /var/lib/rancher/k3s/agent/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/*
+ 1689  sudo rm -rf /run/k3s
+ 1690  sudo systemctl start k3s
+ 1691  sudo /usr/local/bin/k3s server --disable traefik --debug
+ 1692  sudo k3s kubectl get nodes
+ 1693  sudo lsof -i :6443
+ 1694  sudo lsof -i :2379
+ 1695  sudo systemctl stop k3s
+ 1696  sudo lsof -i :2379
+ 1697  sudo /usr/local/bin/k3s-uninstall.sh
+ 1698  sudo rm -rf /etc/rancher/k3s
+ 1699  sudo rm -rf /var/lib/rancher/k3s
+ 1700  sudo rm -rf /run/k3s
+ 1701  ps aux | grep -E 'k3s|containerd'
+ 1702  sudo apt install -y curl wget apt-transport-https ca-certificates
+ 1703  sudo swapoff -a
+ 1704  sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+ 1705  echo 'br_netfilter' | sudo tee /etc/modules-load.d/k8s.conf
+ 1706  echo 'overlay' | sudo tee -a /etc/modules-load.d/k8s.conf
+ 1707  sudo modprobe br_netfilter
+ 1708  sudo modprobe overlay
+ 1709  cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+ 1710  net.bridge.bridge-nf-call-iptables = 1
+ 1711  net.bridge.bridge-nf-call-ip6tables = 1
+ 1712  net.ipv4.ip_forward = 1
+ 1713  net.ipv6.conf.all.forwarding = 1
+ 1714  EOF
+ 1715  sudo sysctl --system
+ 1716  curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable-network-policy --flannel-backend=none --disable=traefik" sh -s -
+ 1717  sudo systemctl enable k3s
+ 1718  sudo systemctl start k3s
+ 1719  sudo systemctl status k3s
+ 1720  sudo cat /var/lib/rancher/k3s/server/node-token
+ 1721  sudo k3s kubectl apply -f https://projectcalico.docs.tigera.io/manifests/calico.yaml
+ 1722  sudo systemctl status k3s -l
+ 1723  sudo journalctl -u k3s -f
+ 1724  kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.20.1/serving-crds.yaml
+ 1725  kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.20.1/serving-core.yaml
+ 1726  kubectl apply -f https://github.com/knative/net-kourier/releases/latest/download/kourier.yaml
+ 1727  kubectl patch configmap/config-network   -n knative-serving   --type merge   -p '{"data":{"ingress-class":"kourier.ingress.networking.knative.dev"}}'
+ 1728  kubectl label node pi-worker1 node-type=edge
+ 1729  kubectl label node pi-worker2 node-type=edge
+ 1730  kubectl label node pi-worker3 node-type=edge
+ 1731  kubectl label node pi-worker4 node-type=edge
+ 1732  kubectl label node pi-worker5 node-type=edge
+ 1733  kubectl patch configmap/config-defaults   -n knative-serving   --type merge   -p '{
+ 1734      "data":{
+ 1735        "default-node-selector":"node-type=edge"
+ 1736      }
+ 1737    }'
+ 1738  kubectl label node pi-worker1 node-role.kubernetes.io/worker1=
+ 1739  kubectl label node pi-worker2 node-role.kubernetes.io/worker2=
+ 1740  kubectl label node pi-worker3 node-role.kubernetes.io/worker3=
+ 1741  kubectl label node pi-worker4 node-role.kubernetes.io/worker4=
+ 1742  kubectl label node pi-worker5 node-role.kubernetes.io/worker5=
+ 1743  kubectl apply -f https://github.com/knative/eventing/releases/download/knative-v1.20.0/eventing-core.yaml
+ 1744  kubectl apply -f https://github.com/knative-extensions/eventing-kafka-broker/releases/download/knative-v1.20.1/eventing-kafka-controller.yaml
+ 1745  kubectl apply -f https://github.com/knative-extensions/eventing-kafka-broker/releases/download/knative-v1.20.1/eventing-kafka-channel.yaml
+ 1746  kubectl apply -f https://github.com/knative-extensions/eventing-kafka-broker/releases/download/knative-v1.20.1/eventing-kafka-post-install.yaml
+ 1747  kubectl apply -f https://github.com/knative-extensions/eventing-kafka-broker/releases/download/knative-v1.20.1/eventing-kafka-controller.yaml
+ 1748  kubectl apply -f https://github.com/knative-extensions/eventing-kafka-broker/releases/download/knative-v1.20.1/eventing-kafka-broker.yaml
+ 1749  kubectl apply -f https://github.com/knative-extensions/eventing-kafka-broker/releases/download/knative-v1.20.1/eventing-kafka-post-install.yaml
+ 1750  kubectl apply -f https://github.com/knative-extensions/eventing-kafka-broker/releases/download/knative-v1.20.1/eventing-kafka-controller.yaml
+ 1751  kubectl apply -f https://github.com/knative-extensions/eventing-kafka-broker/releases/download/knative-v1.20.1/eventing-kafka-sink.yaml
+ 1752  curl -Lo kn https://github.com/knative/client/releases/latest/download/kn-linux-amd64
+ 1753  chmod +x kn
+ 1754  sudo mv kn /usr/local/bin/
+ 1755  kn version
+ 1756  kn service describe hello
+ 1757  kn service create hello   --image gcr.io/knative-samples/helloworld-go   --port 8080
+ 1758  kn service list
+ 1759  kn service describe hello
+ 1760  curl http://hello.default.svc.cluster.local
+ 1761  kubectl get svc -n kourier-system
+ 1762  kubectl patch configmap/config-network   --namespace knative-serving   --type merge   --patch '{"data":{"ingress.class":"kourier.ingress.networking.knative.dev"}}'
+ 1763  kubectl get ksvc hello
+ 1764  curl  http://hello.default.svc.cluster.local
+ 1765  curl -H "Host: hello.default.svc.cluster.local" http://131.254.100.71
+ 1766  kubectl patch configmap/config-domain       --namespace knative-serving       --type merge       --patch '{"data":{"example.com":""}}'
+ 1767  kubectl get ksvc
+ 1768  curl -H "Host: hello.default.svc.cluster.local" http://131.254.23.69:31113
+ 1769  curl http://hello.default.example.com
+ 1770  kubectl get ksvc
+ 1771  sudo nano /etc/hosts
+ 1772  curl http://hello.default.example.com
+ 1773  kubectl get ksvc
+ 1774  curl http://hello.default.example.com
+ 1775  kubectl get pod hello-00001-deployment-799d86986d-h982w -o wide
+ 1776  kubectl taint nodes gamepc node-role.kubernetes.io/control-plane=:NoSchedule
+ 1777  curl http://hello.default.example.com
+ 1778  kn service update hello   --image ghcr.io/knative-samples/helloworld-go:latest
+ 1779  kn service update hello   --image gcr.io/knative-samples/helloworld-go
+ 1780  kn service update hello   --image docker.io/library/nginx:alpine
+ 1781  kn service update hello --image arm64v8/nginx:alpine
+ 1782  kn service update hello --image gcr.io/knative-samples/helloworld-go
+ 1783  kn service create hello-test   --image gcr.io/knative-samples/helloworld-go   --env TARGET=HelloTest
+ 1784  kn service create hello-test   --image helloworld-go-arm64   --env TARGET=HelloTest
+ 1785  kn service create hello-test   --image helloworld-go-arm64   --env TARGET=HelloTest   --force
+ 1786  kn service create hello-test   --image gcr.io/knative-samples/helloworld-go   --env TARGET=HelloTest   --force
+ 1787  kn service create hello-test   --image sandjong/helloworld-go-arm64:latest   --env TARGET=HelloTest   --force
+ 1788  kubectl get ksvc hello-test
+ 1789  history > mon_historiq2.txt
+ 1790  sudo nano /etc/hosts
+ 1791  wscat -c ws://localhost:8080/ws
+ 1792  http://websockets-server.default.example.com
+ 1793  curl http://websockets-server.default.example.com
+ 1794  sudo nano /etc/hosts
+ 1795  wscat -c ws://websockets-server.default.example.com/ws
+ 1796  kubectl get svc -n knative-serving net-kourier-controller
+ 1797  kubectl edit svc -n knative-serving net-kourier-controller
+ 1798  kubectl port-forward -n knative-serving svc/net-kourier-controller 8080:80
+ 1799  kubectl edit svc -n knative-serving net-kourier-controller
+ 1800  kubectl get svc -n knative-serving net-kourier-controller
+ 1801  sudo kubectl get nodes
+ 1802  clear
+ 1803  kubectl get pods -n knative-serving
+ 1804  kubectl get ksvc
+ 1805  kubectl describe pod hello-test-00005-deployment-5f8dd8cc94-9z2kd
+ 1806  kubectl describe pod 
+ 1807  kubectl get pod hello-test-00005 -o wide
+ 1808  kubectl get pod 
+ 1809  kubectl get pods
+ 1810  kubectl get pods -o w
+ 1811  kubectl get pods -o -w
+ 1812  kubectl get pods -o -wide
+ 1813  kubectl get pods -wide
+ 1814  docker images
+ 1815  docker ps
+ 1816  docker ps -a
+ 1817  ssh worker1@131.254.100.72
+ 1818  ssh worker1@131.254.100.72
+ 1819  kubectl edit serviceaccount default --namespace default
+ 1820  clear 
+ 1821  mkdir Edge
+ 1822  cd Edge/
+ 1823  git clone https://github.com/spcl/serverless-benchmarks.git
+ 1824  git clone https://github.com/kaustubhrajput46/EdgeFaaSBench.git
+ 1825  git clone https://github.com/SJTU-IPADS/ServerlessBench.git
+ 1826  ls
+ 1827  cd EdgeFaaSBench/
+ 1828  ls
+ 1829  cd Scripts/
+ 1830  ls
+ 1831  curl http://localhost:8080/
+ 1832  curl -v -d "Hello world" -X POST http://localhost:8080/
+ 1833  ls
+ 1834  ssh worker1@
+ 1835  ssh worker1@131.254.100.72
+ 1836  clear
+ 1837  cd Edge/
+ 1838  ls
+ 1839  cd  EdgeFaaSBench/
+ 1840  ls
+ 1841  cd Applications/
+ 1842  ls
+ 1843  cd ..
+ 1844  ls
+ 1845  cd functions/
+ 1846  ls
+ 1847  cd micro_functions_rpi/
+ 1848  ls
+ 1849  cd dd-cmd/
+ 1850  ls
+ 1851  curl http://dd-cmd.default.example.com
+ 1852  docker pull cd21/dd-cmd:latest
+ 1853  ls
+ 1854  docker tag cd21/dd-cmd:latest sandjong/dd-cmd:latest
+ 1855  docker push sandjong/dd-cmd:latest
+ 1856  kubectl apply --filename dd-cmd.yaml
+ 1857  ls
+ 1858  kubectl apply --filename dd-cmd.yml
+ 1859  kubectl get ksvc
+ 1860  kn service create dd-cmd
+ 1861  kn service describe dd-cmd
+ 1862  kubectl  get pods
+ 1863  kubectl describe pod dd-cmd-00001-deployment-6fc67f7bfb-hkqds
+ 1864  curl  http://dd-cmd.default.example.com
+ 1865  curl  http://localhost:8080
+ 1866  curl  http://dd-cmd.default.example.com
+ 1867  kubectl edit configmap config-network -n knative-serving
+ 1868  kubectl get pods --namespace knative-serving
+ 1869  kubectl describe default-domain-t5m6m
+ 1870  kubectl get pods --namespace knative-serving
+ 1871  kubectl get ksvc
+ 1872  kubectl delete hello
+ 1873  kubectl delete ksvc hello
+ 1874  kubectl delete ksvc hello-test
+ 1875  curl  http://dd-cmd.default.example.com
+ 1876  kubectl apply --filename dd-cmd.yml
+ 1877  kubectl get ksvc
+ 1878  kubectl  get pods
+ 1879  kubectl get pods 
+ 1880  kubectl logs dd-cmd-00001-deployment-6fc67f7bfb-d8whb -c user-container -f
+ 1881  kubectl get pods 
+ 1882  kubectl logs dd-cmd-00001-deployment-6fc67f7bfb-vk4nd -c user-container -f
+ 1883  kubectl get pods 
+ 1884  cd ~
+ 1885  cat /etc/host
+ 1886  cat /etc/hosts
+ 1887  sudo nano  /etc/hosts
+ 1888  kubectl get pods --namespace knative-serving
+ 1889  kubectl patch configmap/config-network --namespace knative-serving --type merge --patch '{"data":{"ingress-class":"kourier.ingress.networking.knative.dev"}}'
+ 1890  kubectl --namespace kourier-system get service kourier
+ 1891  kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.20.1/serving-default-domain.yaml
+ 1892  kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.20.1/serving-hpa.yaml
+ 1893  kubectl get pods --namespace knative-serving
+ 1894  kubectl  get pod -o wide
+ 1895  sudo nano /etc/hosts
+ 1896  kubectl get pods --namespace knative-serving
+ 1897  kubectl get pods
+ 1898  kubectl get ksvc dd-cmd -o yaml | grep containerPort -A2
+ 1899  curl -v http://dd-cmd.default.example.com
+ 1900  kubectl logs dd-cmd-00001-deployment-6fc67f7bfb-sjr68 -c user-container
+ 1901  kubectl exec -it dd-cmd-00001-deployment-6fc67f7bfb-sjr68 -- sh
+ 1902  kubectl logs dd-cmd-00001-deployment-6fc67f7bfb-sjr68 -c user-container
+ 1903  kubectl get pods
+ 1904  kubectl exec -it dd-cmd-00001-deployment-6fc67f7bfb-sjr68 -- sh
+ 1905  kubectl get pods
+ 1906  kubectl exec -it  dd-cmd-00001-deployment-6fc67f7bfb-d8whb -- sh
+ 1907  netstat -tlnp
+ 1908  kubectl port-forward svc/dd-cmd 8080:8080
+ 1909  kubectl get pods
+ 1910  kubectl port-forward pod/dd-cmd-00001-deployment-6fc67f7bfb-vk4nd 8080:8080
+ 1911  kubectl port-forward pod/dd-cmd-00001-deployment-6fc67f7bfb-gwvt2 8080:8080
+ 1912  docker build -t sandjong/image-classification-alexnet-cpu:latest .
+ 1913  docker buildx --platform linux/amd64 -t sandjong/image-classification-alexnet-cpu:latest .
+ 1914  docker buildx build --platform linux/amd64 -t sandjong/image-classification-alexnet-cpu:latest .
+ 1915  docker buildx build --platform linux/arm64 -t sandjong/image-classification-alexnet-cpu:latest .
+ 1916  docker push sandjong/image-classification-alexnet-cpu:latest .
+ 1917  docker push sandjong/image-classification-alexnet-cpu:latest 
+ 1918  kubectl apply -f service.yaml
+ 1919  kubectl apply -f service.yml
+ 1920  kubectl get ksvc alexnet -n default
+ 1921  kubectl get ksvc alexnet 
+ 1922  kubectl get pods
+ 1923  kubectl logs alexnet-00001-deployment-6dcb755968-v5gfj -c user-container
+ 1924  docker rmi sandjong/image-classification-alexnet-cpu:latest
+ 1925  docker pull cd21/image-classification-alexnet-cpu:latest
+ 1926  docker tag cd21/image-classification-alexnet-cpu:latest sandjong/image-classification-alexnet-cpu:latest
+ 1927  docker push sandjong/image-classification-alexnet-cpu:latest
+ 1928  docker pull cd21/image-classification-batch-alexnet-cpu:latest
+ 1929  docker tag cd21/image-classification-batch-alexnet-cpu:latest sandjong/image-classification-batch-alexnet-cpu:latest
+ 1930  docker push sandjong/image-classification-batch-alexnet-cpu:latest
+ 1931  docker pull cd21/image-classification-batch-squeezenet-cpu:latest
+ 1932  docker tag cd21/image-classification-batch-squeezenet-cpu:latest sandjong/image-classification-batch-squeezenet-cpu:latest
+ 1933  docker push sandjong/image-classification-batch-squeezenet-cpu:latest
+ 1934  docker inspect sandjong/image-classification-alexnet-cpu:latest
+ 1935  docker tag cd21/image-classification-alexnet-cpu:latest sandjong/image-classification-alexnet-cpu:latest
+ 1936  docker push sandjong/image-classification-alexnet-cpu:latest
+ 1937  docker inspect sandjong/image-classification-alexnet-cpu:latest
+ 1938  kubectl get svc
+ 1939  kubectl get ksvc
+ 1940  curl  http://alexnet.default.example.com
+ 1941  kubectl port-forward svc/alexnet 8080:80 -n default
+ 1942  kubectl port-forward pod/alexnet-00001-deployment-6dcb755968-v5gfj 8080:8080 -n default
+ 1943  kubectl port-forward pod/alexnet-00001-deployment-f98c74c65-hd692 8080:8080 -n default
+ 1944  docker inspect sandjong/image-classification-alexnet-cpu:latest
+ 1945  docker exec -t  sandjong/image-classification-alexnet-cpu:latest
+ 1946  docker exec -it  sandjong/image-classification-alexnet-cpu:latest sh
+ 1947  docker run -it   sandjong/image-classification-alexnet-cpu:latest
+ 1948  kubectl get pods
+ 1949  kubectl get ksvc 
+ 1950  kubectl get ksvc -A
+ 1951  kubectl delete ksvc --all -n default
+ 1952  kubectl get ksvc -A
+ 1953  kubectl delete pods --all -n default
+ 1954  kubectl get triggers -A
+ 1955  kubectl get services -A
+ 1956  sudo nano /etc/hosts
+ 1957  kubectl delete pods --all -n default
+ 1958  kubectl delete ksvc --all -n default
+ 1959  kubectl get ksvc 
+ 1960  kubectl describe pod alexnet-00001-deployment-f98c74c65-hd692
+ 1961  kubectl top pod
+ 1962  kubectl get  pod alexnet-00001-deployment-f98c74c65-hd692 -o jsonpath='{.metadata.creationTimestamp}'
+ 1963  kubectl get  pod alexnet-00001-deployment-f98c74c65-hd692 -o jsonpath='{.status.startTime}'
+ 1964  curl http://localhost:8080
+ 1965  kubectl get ksvc 
+ 1966  kubectl get  pod alexnet-00001-deployment-f98c74c65-hd692 -o jsonpath='{.status.startTime}'
+ 1967  kubectl top pod
+ 1968  docker ps
+ 1969  docker ps -a
+ 1970  docker ps -aux
+ 1971  docker ps -ax
+ 1972  kubectl get pds
+ 1973  kubectl get pods
+ 1974  kubectl get ksvc
+ 1975  curl http://alexnet.default.example.com 
+ 1976  kubectl get nodes
+ 1977  kubectl describe alexnet-00001-deployment-f98c74c65-hd692
+ 1978  kubectl describe pod alexnet-00001-deployment-f98c74c65-hd692
+ 1979  ping http://alexnet.default.example.com 
+ 1980  kubectl describe pod alexnet-00001-deployment-f98c74c65-hd692
+ 1981  docker ps
+ 1982  docker inspect 495a
+ 1983  curl 172.17.0.2:8081
+ 1984  curl 172.17.0.2:8080
+ 1985  curl 172.17.0.2:8081
+ 1986  cat /etc/rancher/k3s/k3s.yaml
+ 1987  sudo cat /etc/rancher/k3s/k3s.yaml
+ 1988  ps aux | grep kube-apiserver
+ 1989  ps aux | grep kube-scheduler
+ 1990  journalctl  -m -u | grep 'Running kube-apiserver'
+ 1991  journalctl  -m -u k3s | grep 'Running kube-apiserver'
+ 1992  journalctl  -m -u k3s | grep 'scheduler'
+ 1993  wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
+ 1994  sudo tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz
+ 1995  echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+ 1996  source ~/.bashrc
+ 1997  go version
+ 1998  git clone https://github.com/knative/serving.git
+ 1999  cd serving/
+ 2000  ls
+ 2001  kubectl get deploy -n knative-serving
+ 2002  docker.io/sandjong/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:e5073b9861b5e14e0ee4590dea80c1dc898e19be2bdf2185aa17b3a16363f7ac
+ 2003  kubectl -n knative-serving set image deployment/autoscaler   autoscaler=docker.io/sandjong/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:e5073b9861b5e14e0ee4590dea80c1dc898e19be2bdf2185aa17b3a16363f7ac
+ 2004  kubectl get pods -n knative-serving -l app=autoscaler
+ 2005  kubectl -n knative-serving get deploy autoscaler -o yaml | grep -A3 SYSTEM_NAMESPACE
+ 2006  kubectl -n knative-serving set image deployment/autoscaler   autoscaler=gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler@sha256:702a90183dea248d92169646b20f797c4d30e2966d1ce36c45c4aafe4210ed1f
+ 2007  kubectl get pods -n knative-serving -l app=autoscaler
+ 2008  kubectl apply -f autoscaler-test.yaml
+ 2009  kubectl get pods -n knative-serving -l app=autoscaler-test
+ 2010  kubectl logs -n knative-serving deploy/autoscaler-test -f
+ 2011  export KO_DOCKER_REPO=docker.io/sandjong
+ 2012  kubectl apply -f serving-test.yaml
+ 2013  kubectl get pods -n knative-serving -l app=autoscaler-test
+ 2014  kubectl logs -n knative-serving deploy/autoscaler-test --previous
+ 2015  kubectl -n knative-serving set image deployment/autoscaler   autoscaler=autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:3dfcf63f0ccd6487931b65cba456a8f9e22a626c5f44d83012adeba4948c92e7
+ 2016  kubectl get pods -n knative-serving -l app=autoscaler-test
+ 2017  kubectl -n knative-serving set image deployment/autoscaler   autoscaler=gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler@sha256:702a90183dea248d92169646b20f797c4d30e2966d1ce36c45c4aafe4210ed1f
+ 2018  kubectl get pods -n knative-serving -l app=autoscaler
+ 2019  kubectl -n knative-serving set image deployment/autoscaler-test   autoscaler=docker.io/sandjong/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:3dfcf63f0ccd6487931b65cba456a8f9e22a626c5f44d83012adeba4948c92e7
+ 2020  kubectl get pods -n knative-serving -l app=autoscaler
+ 2021  kubectl get pods -n knative-serving -l app=autoscaler-test
+ 2022  kubectl logs -n knative-serving deploy/autoscaler-test -f
+ 2023  kubectl create clusterrolebinding autoscaler-test-binding   --clusterrole=knative-serving-admin   --serviceaccount=knative-serving:controller
+ 2024  kubectl delete pod -n knative-serving -l app=autoscaler-test
+ 2025  kubectl get pods -n knative-serving -l app=autoscaler-test
+ 2026  kubectl logs -n knative-serving deploy/autoscaler-test -f
+ 2027  kubectl -n knative-serving set image deployment/autoscaler   autoscaler=docker.io/sandjong/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:3dfcf63f0ccd6487931b65cba456a8f9e22a626c5f44d83012adeba4948c92e7
+ 2028  kubectl delete pod -n knative-serving -l app=autoscaler
+ 2029  kubectl get pods -n knative-serving -l app=autoscaler
+ 2030  kubectl logs -n knative-serving deploy/autoscaler -f
+ 2031  kubectl -n knative-serving set image deployment/autoscaler   autoscaler=docker.io/sandjong/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:84ad48843547c81927e3c4f0b3209c82dbf56b3b51301bd9ea044a27dc6c955f
+ 2032  kubectl get pods -n knative-serving -l app=autoscaler
+ 2033  kubectl logs -n knative-serving deploy/autoscaler -f
+ 2034  kubectl delete pod -n knative-serving -l app=autoscaler
+ 2035  kubectl -n knative-serving set image deployment/autoscaler   autoscaler=docker.io/sandjong/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:fa1d83a11c92e9521496d03d4afefcb600e903d42b0931ccfbc372e124aded9e
+ 2036  kubectl get pods -n knative-serving -l app=autoscaler
+ 2037  kubectl logs -n knative-serving deploy/autoscaler -f
+ 2038  kubectl delete pod -n knative-serving -l app=autoscaler
+ 2039  kubectl -n knative-serving set image deployment/autoscaler   autoscaler=docker.io/sandjong/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:592f2e382773ec95096ead7c3497af955e1cbe31b8ea2b60661d6c42299af9fc
+ 2040  kubectl get pods -n knative-serving -l app=autoscaler
+ 2041  kubectl logs -n knative-serving deploy/autoscaler -f
+ 2042  /tmp/coldstart_timers.log
+ 2043  kubectl exec -it autoscaler -n knative-serving -- tail -f /tmp/coldstart_timers.log
+ 2044  kubectl get pods -n knative-serving -l app=autoscaler
+ 2045  kubectl exec -it autoscaler-6c4d67dd4c-slns4 -n knative-serving -- tail -f /tmp/coldstart_timers.log
+ 2046  kubectl cp knative-serving/autoscaler-6c4d67dd4c-slns4:/tmp/coldstart_timers.log ./coldstart.log
+ 2047  kubectl get pods -n knative-serving -l app=activator
+ 2048  kubectl -n knative-serving set image deployment/autoscaler   autoscaler=
+ 2049  kubectl get pods -n knative-serving -l app=autoscaler
+ 2050  kubectl -n knative-serving set image deployment/activator   activator=docker.io/sandjong/activator-ecd51ca5034883acbe737fde417a3d86@sha256:efecc379c0e0f7f5987d83c960689a7b52041ea9a500ff5d5c033a7d42707f06
+ 2051  kubectl get pods -n knative-serving -l app=activator
+ 2052  kubectl logs -n knative-serving deploy/activator -f
+ 2053  kubectl get pod alexnet-cpu-00001-xxx -o yaml | grep -A2 ports
+ 2054  kubectl get pods -n knative-serving -l app=activator
+ 2055  kubectl get pods 
+ 2056  kubectl get pod alexnet-cpu-00001-deployment-76bc9d45f6-sm5fw -o yaml | grep -A2 ports
+ 2057  kubectl port-forward pod/alexnet-cpu-00001-deployment-76bc9d45f6-sm5fw 8080:8080
+ 2058  curl http://localhost:8080/healthz
+ 2059  kubectl exec -it alexnet-cpu-00001-deployment-76bc9d45f6-sm5fw -- netstat -tuln | grep 8080
+ 2060  kubectl get pod alexnet-cpu-00001-deployment-76bc9d45f6-sm5fw -o yaml | grep -A2 ports
+ 2061  curl http://localhost:8080/healthz
+ 2062  kubectl exec -it alexnet-cpu-00001-deployment-76bc9d45f6-sm5fw -- netstat -tuln | grep 8080
+ 2063  kubectl exec -it alexnet-cpu-00001-deployment-76bc9d45f6-sm5fw -- netstat -tuln | grep 8080kubectl delete pod alexnet-cpu-00001-deployment-76bc9d45f6-plxr4 -n default
+ 2064  kubectl exec -it alexnet-cpu-00001-deployment-76bc9d45f6-sm5fw -- netstat -tuln | grep 8080
+ 2065  kubectl port-forward pod/alexnet-cpu-00001-deployment-76bc9d45f6-sm5fw 8080:8080
+ 2066  ls
+ 2067  history > terminator.txt

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: autoscaler-test
+  namespace: knative-serving
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: autoscaler-test
+  template:
+    metadata:
+      labels:
+        app: autoscaler-test
+    spec:
+      containers:
+      - name: autoscaler
+        image: docker.io/sandjong/autoscaler-12c0fa24db31956a7cfa673210e4fa13@sha256:e5073b9861b5e14e0ee4590dea80c1dc898e19be2bdf2185aa17b3a16363f7ac
+        env:
+        - name: SYSTEM_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: CONFIG_LOGGING_NAME
+          value: config-logging
+
