@@ -1,0 +1,21 @@
+timestamp,pod,scheduling_time_ms
+I0604 07:27:23.747260,default/fastfouriertransform-00001-deployment-78d877fd9c-f924s,8.715711
+I0604 07:27:23.747605,default/genmatrix-00001-deployment-5444456b78-2cnlm,6.527404
+I0604 07:27:25.041207,default/fetchdata-00001-deployment-759f5b8c55-wvc6l,4.659376
+I0604 07:27:27.067701,default/linpack-00001-deployment-6d74694468-lntqm,29.943929
+I0604 07:27:37.049011,default/matrixmul-00001-deployment-78f7668cf4-hq99q,5.32799
+I0604 08:03:20.624790,default/fastfouriertransform-00001-deployment-78d877fd9c-pzz9h,9.646083
+I0604 08:03:21.528121,default/genmatrix-00001-deployment-5444456b78-6krgf,6.458531
+I0604 08:03:22.527453,default/fetchdata-00001-deployment-759f5b8c55-4csxl,6.246252
+I0604 08:03:24.524525,default/linpack-00001-deployment-6d74694468-b4ccv,5.35434
+I0604 08:03:35.525519,default/matrixmul-00001-deployment-78f7668cf4-nzbmx,6.262864
+I0604 08:39:39.183725,default/fastfouriertransform-00001-deployment-78d877fd9c-xz45t,6.35316
+I0604 08:39:40.064146,default/genmatrix-00001-deployment-5444456b78-z8qdh,6.463456
+I0604 08:39:41.030200,default/fetchdata-00001-deployment-759f5b8c55-tt8k7,4.6523
+I0604 08:39:43.032231,default/linpack-00001-deployment-6d74694468-t6x2w,5.897732
+I0604 08:39:54.068900,default/matrixmul-00001-deployment-78f7668cf4-lpbfm,5.961343
+I0604 09:17:42.486967,default/fastfouriertransform-00001-deployment-78d877fd9c-4pmkp,9.329602
+I0604 09:17:43.345908,default/genmatrix-00001-deployment-5444456b78-56fsc,5.861122
+I0604 09:17:44.346291,default/fetchdata-00001-deployment-759f5b8c55-r76xf,6.361884
+I0604 09:17:46.343313,default/linpack-00001-deployment-6d74694468-xxxsx,5.615176
+I0604 09:17:57.342201,default/matrixmul-00001-deployment-78f7668cf4-s89h7,4.757895

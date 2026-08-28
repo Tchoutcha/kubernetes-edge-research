@@ -1,0 +1,21 @@
+timestamp,pod,scheduling_time_ms
+I0630 16:00:03.723933,default/resnet-00001-deployment-5c95599d68-8tpk8,10.525372
+I0630 16:00:03.724379,default/mobilenet-00001-deployment-76d95655d-mzclm,12.702117
+I0701 07:42:10.096150,default/mobilenet-00001-deployment-76d95655d-jq7lm,12.164091
+I0701 07:42:10.963137,default/resnet-00001-deployment-5c95599d68-5kcwt,5.44147
+I0701 08:22:25.768463,default/mobilenet-00001-deployment-76d95655d-rvrxs,5.777621
+I0701 08:22:26.429750,default/resnet-00001-deployment-5c95599d68-mm76g,6.255456
+I0701 09:00:16.769913,default/mobilenet-00001-deployment-76d95655d-zwndj,6.397769
+I0701 09:00:17.312948,default/resnet-00001-deployment-5c95599d68-ltxcw,4.759951
+I0701 09:42:01.761046,default/mobilenet-00001-deployment-76d95655d-4tkj4,5.136546
+I0701 09:42:02.675110,default/resnet-00001-deployment-5c95599d68-nt6tt,4.67747
+I0701 10:21:49.339469,default/mobilenet-00001-deployment-76d95655d-nmt4m,6.527864
+I0701 10:21:50.227864,default/resnet-00001-deployment-5c95599d68-w6b5k,5.845918
+I0701 10:59:34.518982,default/mobilenet-00001-deployment-76d95655d-zvcfw,19.012905
+I0701 10:59:35.453558,default/resnet-00001-deployment-5c95599d68-g9rcd,5.613121
+I0701 11:36:36.761798,default/mobilenet-00001-deployment-76d95655d-249sm,5.871902
+I0701 11:36:37.283955,default/resnet-00001-deployment-5c95599d68-lq8pk,5.194475
+I0701 12:15:50.588615,default/mobilenet-00001-deployment-76d95655d-8k8vx,5.894045
+I0701 12:15:51.500843,default/resnet-00001-deployment-5c95599d68-swmfw,5.710822
+I0701 12:53:08.489690,default/mobilenet-00001-deployment-76d95655d-6w96t,6.340678
+I0701 12:53:09.228912,default/resnet-00001-deployment-5c95599d68-h2stt,5.238288

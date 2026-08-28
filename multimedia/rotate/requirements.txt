@@ -1,5 +1,0 @@
-numpy
-pillow
-py-cpuinfo
-fastapi
-uvicorn

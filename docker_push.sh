@@ -25,7 +25,7 @@ REPO="profiling"
 echo "Logging in to Docker Hub..."
 docker login -u ${DOCKERHUB_USERNAME}
 if [[ $? -ne 0 ]]; then
-    echo "❌ Docker login failed. Exiting."
+    echo "Docker login failed. Exiting."
     exit 1
 fi
 
@@ -41,23 +41,23 @@ for FUNC in "${FUNCTION_DIRS[@]}"; do
 
     # Check image exists locally
     if ! docker image inspect "${LOCAL_IMAGE}" > /dev/null 2>&1; then
-        echo "❌ Local image ${LOCAL_IMAGE} not found. Skipping."
+        echo "Local image ${LOCAL_IMAGE} not found. Skipping."
         PUSH_FAILURES+=("$FUNC")
         continue
     fi
 
     # Tag
     docker tag "${LOCAL_IMAGE}" "${REMOTE_IMAGE}"
-    echo "✅ Tagged: ${LOCAL_IMAGE} → ${REMOTE_IMAGE}"
+    echo "Tagged: ${LOCAL_IMAGE} → ${REMOTE_IMAGE}"
 
     # Push
     docker push "${REMOTE_IMAGE}"
     if [[ $? -ne 0 ]]; then
-        echo "❌ Push failed for ${FUNC}"
+        echo "Push failed for ${FUNC}"
         PUSH_FAILURES+=("$FUNC")
         continue
     fi
-    echo "✅ Pushed: ${REMOTE_IMAGE}"
+    echo "Pushed: ${REMOTE_IMAGE}"
 
 done
 
@@ -71,12 +71,12 @@ echo "Push failures   : ${#PUSH_FAILURES[@]}"
 
 if [[ ${#PUSH_FAILURES[@]} -gt 0 ]]; then
     echo ""
-    echo "❌ Push failures:"
+    echo "Push failures:"
     for F in "${PUSH_FAILURES[@]}"; do
         echo "   - $F"
     done
 else
-    echo "✅ All ${#FUNCTION_DIRS[@]} images pushed successfully"
+    echo "All ${#FUNCTION_DIRS[@]} images pushed successfully"
 fi
 
 echo ""
