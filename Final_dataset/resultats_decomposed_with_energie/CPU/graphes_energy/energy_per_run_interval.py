@@ -1,18 +1,4 @@
-"""
-energy_per_run_interval.py
 
-Calcule, pour chaque repetition labellisee (via antela_logger_v2.py + mark_run.py) :
-  - duration_s        : duree de l'intervalle [debut(repN), debut(repN+1))
-  - idle_power_local_W: baseline idle mesuree localement dans cet intervalle (verification)
-  - energy_total_J    : energie nette (baseline soustraite) sur l'intervalle
-  - J_per_req         : energie totale / nb de requetes du run
-
-Methode : fenetre = [debut du label repN, debut du label rep(N+1)) — capture le run
-complet + sa traine de refroidissement, jusqu'au lancement du run suivant.
-
-Fonctionne sur un ou plusieurs fichiers CSV
-labellises concatenes (ex: plusieurs sessions antela_data_*.csv).
-"""
 import pandas as pd
 import glob
 
@@ -20,7 +6,7 @@ REQUESTS_PER_RUN = 2000
 
 
 class Args:
-    csv_glob = "/mnt/user-data/uploads/antela_data_*.csv"  # un ou plusieurs fichiers
+    csv_glob = "/mnt/user-data/uploads/antela_data_*.csv"  
     config_name = "local"        # "local", "1core", "apiserver", "adaptive"...
     idle_labels = ("idle", "unknown")
     output_csv = None            # auto si None
