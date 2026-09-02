@@ -1,19 +1,4 @@
-"""
-plot_final_comparison.py
 
-Génère les 3 graphes finaux :
-- énergie totale ;
-- énergie par invocation (J/req) ;
-- puissance maximale.
-
-Tous les graphes sont affichés en fonction du délai pour les 4 configurations.
-
-Style académique OSDI/SOSP :
-- Liberation Serif ;
-- palette Wong 2011 ;
-- hachures ;
-- aucune barre d'erreur.
-"""
 
 from pathlib import Path
 
