@@ -25,17 +25,17 @@ plt.rcParams["axes.spines.right"] = False
 # ---------------------------------------------------------------------------
 
 WONG = {
-    "local": "#D55E00",
-    "1core": "#009E73",
-    "apiserver": "#CC0000",
-    "adaptive": "#9400D3",
+    "local": "0.75",
+    "1core": "0.55",
+    "apiserver": "0.35",
+    "adaptive": "white",
 }
 
 HATCHES = {
-    "local": "//",
-    "1core": "xx",
-    "apiserver": "\\\\",
-    "adaptive": "++",
+    "local": None,
+    "1core": None,
+    "apiserver": None,
+    "adaptive": "//",
 }
 
 LABELS = {
@@ -175,8 +175,8 @@ def main(args):
     if not csv_path.is_file():
         raise FileNotFoundError(
             f"CSV introuvable : {csv_path}\n"
-            "Place le fichier all_configs_combined_summary.csv "
-            "dans le même dossier que le script."
+            ""
+            ""
         )
 
     df = pd.read_csv(csv_path)
@@ -204,7 +204,7 @@ def main(args):
         df=df,
         value_col="energy_total_J",
         ylabel="Total Energy (J)",
-        title="Total Energy Consumption per Configuration and Delay (CPU)",
+        title="",
         out_prefix="total_energy_per_delay_CPU",
         args=args,
     )
@@ -213,7 +213,7 @@ def main(args):
         df=df,
         value_col="J_per_req_mean",
         ylabel="Energy per Invocation (J/req)",
-        title="Energy per Invocation per Configuration and Delay (CPU)",
+        title="",
         out_prefix="energy_per_invocation_CPU",
         args=args,
     )
@@ -222,7 +222,7 @@ def main(args):
         df=df,
         value_col="max_power_W",
         ylabel="Max Power (W)",
-        title="Peak Power Consumption per Configuration and Delay (CPU)",
+        title="",
         out_prefix="max_power_per_delay_CPU",
         args=args,
     )
