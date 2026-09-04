@@ -175,8 +175,8 @@ def main(args):
     if not csv_path.is_file():
         raise FileNotFoundError(
             f"CSV introuvable : {csv_path}\n"
-            "Place le fichier all_configs_combined_summary.csv "
-            "dans le même dossier que le script."
+            "all_configs_combined_summary.csv "
+            ""
         )
 
     df = pd.read_csv(csv_path)
