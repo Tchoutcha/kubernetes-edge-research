@@ -1,4 +1,5 @@
 
+
 from pathlib import Path
 
 import pandas as pd
@@ -23,27 +24,26 @@ plt.rcParams["axes.spines.right"] = False
 # Couleurs, hachures et labels
 # ---------------------------------------------------------------------------
 
-WONG = {
-    "local": "#D55E00",
-    "1core": "#009E73",
-    "apiserver": "#CC0000",
-    "adaptive": "#9400D3",
+conf = {
+    "local": "0.75",
+    "1core": "0.55",
+    "apiserver": "0.35",
+    "adaptive": "white",
 }
- 
+
 HATCHES = {
-    "local": "//",
-    "1core": "xx",
-    "apiserver": "\\\\",
-    "adaptive": "++",
+    "local": None,
+    "1core": None,
+    "apiserver": None,
+    "adaptive": "//",
 }
- 
+
 LABELS = {
     "local": "Local",
     "1core": "Local 1core",
     "apiserver": "Local Apiserver",
     "adaptive": "Adaptive (ACPC)",
 }
- 
 
 
 # ---------------------------------------------------------------------------
@@ -57,10 +57,10 @@ class Args:
         # Compatible Jupyter
         script_dir = Path.cwd()
 
-    csv_path = script_dir / "ML_all_configs_FINAL.csv"
-    out_dir = script_dir / "figures_ML"
+    csv_path = script_dir / "ML_all_configs_FINAL_with2s10s.csv"
+    out_dir = script_dir / "figures_ML_v3"
 
-    delay_order = ["10ms", "50ms", "100ms", "200ms", "1s"]
+    delay_order = ["10ms", "50ms", "100ms", "200ms", "1s", "2s", "10s"]
     config_order = ["local", "1core", "apiserver", "adaptive"]
 
 
@@ -118,7 +118,7 @@ def grouped_bar(
             plot_val,
             width=bar_width,
             label=LABELS[cfg],
-            color=WONG[cfg],
+            color=conf[cfg],
             hatch=HATCHES[cfg],
             edgecolor="black",
             linewidth=0.6,
@@ -204,7 +204,7 @@ def main(args):
         df=df,
         value_col="energy_total_J",
         ylabel="Total Energy (J)",
-        title="Total Energy Consumption per Configuration and Delay (ML)",
+        title="",
         out_prefix="total_energy_per_delay_ML",
         args=args,
     )
@@ -213,7 +213,7 @@ def main(args):
         df=df,
         value_col="J_per_req_mean",
         ylabel="Energy per Invocation (J/req)",
-        title="Energy per Invocation per Configuration and Delay (ML)",
+        title="",
         out_prefix="energy_per_invocation_ML",
         args=args,
     )
@@ -222,7 +222,7 @@ def main(args):
         df=df,
         value_col="max_power_W",
         ylabel="Max Power (W)",
-        title="Peak Power Consumption per Configuration and Delay (ML)",
+        title="",
         out_prefix="max_power_per_delay_ML",
         args=args,
     )
