@@ -1,8 +1,8 @@
-# APC: Adaptive Control-Plane Configuration
+# ACP: Adaptive Control-Plane Configuration
 
-This repository contains the implementation of **APC**, an adaptive control-plane isolation controller presented in our paper (submitted fordouble-blind review).
+This repository contains the implementation of **ACP**, an adaptive control-plane isolation controller presented in our paper (submitted fordouble-blind review).
 
-APC dynamically switches a K3s/Knative cluster between two control-plane isolation levels based on the live request rate observed at the server side.The controller adapts to workload changes without requiring prior knowledge
+ACP dynamically switches a K3s/Knative cluster between two control-plane isolation levels based on the live request rate observed at the server side.The controller adapts to workload changes without requiring prior knowledge
 of the workload.
 
 ## Mapping to the Paper
