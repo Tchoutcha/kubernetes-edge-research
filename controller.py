@@ -1,42 +1,40 @@
 #!/usr/bin/env python3
 """
-controller.py -- CLI orchestrateur du contrôleur adaptatif Local1core <-> LocalApiserver.
 
-Assemble trois couches, chacune testable/remplaçable indépendamment :
+## Usage
 
-    Metrics Provider  ->  request_rate  ->  Decision Policy  ->  Mode  ->  Cluster Actions
-    (metrics_provider.py)                   (policy.py)                    (cluster_actions.py)
+### Normal usage
 
-Ce fichier ne contient AUCUNE logique de décision ni AUCUNE action cluster
--- uniquement l'orchestration, la résolution de config, et le logging.
+With no arguments, the controller loads the configuration, automatically
+detects what it can, and runs indefinitely as an adaptive daemon:
 
-USAGE
------
-Usage normal (aucun argument) : lit la config, auto-détecte ce qui peut
-l'être, tourne en démon adaptatif indéfiniment.
+```bash
+python3 controller.py
+```
 
-    python3 controller.py
+### Configuration resolution
 
-Résolution de la config, dans cet ordre (premier trouvé gagne) :
-    1. --config fourni explicitement
-    2. variable d'environnement ACPC_CONFIG
-    3. ./config.yaml
-    4. /etc/adaptive-controller/config.yaml
-    5. valeurs par défaut sûres (aucun fichier trouvé)
+Configuration is resolved in the following order (first match wins):
 
-Voir config.example.yaml pour le schéma complet et ALGORITHM.md pour le
-principe de la politique de décision.
+1. `--config` explicitly provided
+2. `ACPC_CONFIG` environment variable
+3. `./config.yaml`
+4. `/etc/adaptive-controller/config.yaml`
+5. Safe built-in defaults (if no configuration file is found)
 
-Options :
-    --config PATH     chemin explicite vers le fichier de config
-    --dry-run         affiche les actions sans les exécuter (force le
-                       dry_run même si config.yaml dit false)
-    --once            une seule itération de mesure/décision puis quitte,
-                       au lieu de tourner en démon indéfiniment
-    --check-config    résout la config + auto-détection, affiche le
-                       résultat, quitte sans rien exécuter sur le cluster
-    --switch-to MODE  bascule manuelle ponctuelle (local1core|apiserver),
-                       outil de test secondaire, pas l'usage normal
+See `config.example.yaml` for the complete configuration schema and
+`ALGORITHM.md` for an overview of the decision policy.
+
+### Options
+
+| Option             | Description                                                                                                             |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| `--config PATH`    | Explicit path to the configuration file                                                                                 |
+| `--dry-run`        | Print actions without executing them. Forces dry-run mode even if `config.yaml` sets it to `false`                      |
+| `--once`           | Run a single measurement/decision iteration and exit instead of running indefinitely                                    |
+| `--check-config`   | Resolve the configuration and perform auto-detection, print the result, and exit without executing any cluster action   |
+| `--switch-to MODE` | Perform a one-shot manual switch (`local1core` or `apiserver`). Secondary testing utility; not part of normal operation |
+
 """
 
 import argparse
