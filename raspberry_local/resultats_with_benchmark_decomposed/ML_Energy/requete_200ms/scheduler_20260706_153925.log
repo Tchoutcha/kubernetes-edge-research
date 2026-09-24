@@ -1,0 +1,35 @@
+I0706 13:17:10.120877       1 serving.go:386] Generated self-signed cert in-memory
+W0706 13:17:10.121504       1 client_config.go:683] Neither --kubeconfig nor --master was specified.  Using the inClusterConfig.  This might not work.
+I0706 13:17:10.138166       1 scheduler.go:283] ===  SCHEDULer New  ===
+I0706 13:17:10.139576       1 scheduler.go:457] "fonction New() construit le scheduler, mais ne commence pas à scheduler les pods, c'est la fonction Run() qui commence le scheduling des pods." duration ="1.379186ms"
+I0706 13:17:10.143087       1 server.go:175] "Starting Kubernetes Scheduler" version="v0.0.0-master+$Format:%H$"
+I0706 13:17:10.143110       1 server.go:177] "Golang settings" GOGC="" GOMAXPROCS="" GOTRACEBACK=""
+I0706 13:17:10.147739       1 secure_serving.go:211] Serving securely on [::]:10259
+I0706 13:17:10.147810       1 tlsconfig.go:243] "Starting DynamicServingCertificateController"
+I0706 13:17:10.147812       1 requestheader_controller.go:180] Starting RequestHeaderAuthRequestController
+I0706 13:17:10.147829       1 shared_informer.go:375] "Waiting for caches to sync"
+I0706 13:17:10.147825       1 configmap_cafile_content.go:205] "Starting controller" name="client-ca::kube-system::extension-apiserver-authentication::client-ca-file"
+I0706 13:17:10.147841       1 shared_informer.go:375] "Waiting for caches to sync"
+I0706 13:17:10.147857       1 configmap_cafile_content.go:205] "Starting controller" name="client-ca::kube-system::extension-apiserver-authentication::requestheader-client-ca-file"
+I0706 13:17:10.147867       1 shared_informer.go:375] "Waiting for caches to sync"
+I0706 13:17:10.248694       1 shared_informer.go:382] "Caches are synced"
+I0706 13:17:10.248694       1 shared_informer.go:382] "Caches are synced"
+I0706 13:17:10.248736       1 scheduler.go:542] ===  SCHEDULing RUN ===
+I0706 13:17:10.248695       1 shared_informer.go:382] "Caches are synced"
+I0706 13:17:10.248768       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0706 13:40:36.457723       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0706 13:40:36.462238       1 schedule_one.go:166] "scheduling algorithm completed" duration ="5.916245ms" pod="default/mobilenet-00001-deployment-855b8bc6bc-5zbm8"
+I0706 13:40:37.699286       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0706 13:40:37.706899       1 schedule_one.go:166] "scheduling algorithm completed" duration ="8.504394ms" pod="default/resnet-00001-deployment-5687dd4f7c-g2sqv"
+I0706 13:40:41.696957       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0706 13:40:41.702883       1 schedule_one.go:166] "scheduling algorithm completed" duration ="6.506819ms" pod="default/resnet-00001-deployment-5687dd4f7c-dtgss"
+I0706 13:40:43.719446       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0706 13:40:43.736156       1 schedule_one.go:166] "scheduling algorithm completed" duration ="17.303622ms" pod="default/resnet-00001-deployment-5687dd4f7c-mfhph"
+I0706 13:42:17.833260       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0706 13:42:17.838582       1 schedule_one.go:166] "scheduling algorithm completed" duration ="5.90856ms" pod="default/resnet-00001-deployment-5687dd4f7c-dfznk"
+I0706 13:43:37.703687       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0706 13:43:37.710044       1 schedule_one.go:166] "scheduling algorithm completed" duration ="6.894283ms" pod="default/resnet-00001-deployment-5687dd4f7c-9bhsr"
+I0706 13:45:03.886253       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0706 13:45:03.890223       1 schedule_one.go:166] "scheduling algorithm completed" duration ="5.322097ms" pod="default/resnet-00001-deployment-5687dd4f7c-snxbx"
+I0706 13:46:48.128618       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0706 13:46:48.137693       1 schedule_one.go:166] "scheduling algorithm completed" duration ="9.958341ms" pod="default/resnet-00001-deployment-5687dd4f7c-w2xlb"

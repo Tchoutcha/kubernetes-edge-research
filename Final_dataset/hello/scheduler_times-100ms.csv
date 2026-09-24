@@ -1,0 +1,21 @@
+timestamp,pod,scheduling_time_ms
+I0922 16:33:27.524885,default/hello-00001-deployment-84c48648dc-hjkhw,9.828954
+I0922 16:33:29.157905,default/hello-00001-deployment-84c48648dc-ql5tn,10.592576
+I0922 16:33:29.179418,default/hello-00001-deployment-84c48648dc-clp9q,13.599507
+I0922 16:33:29.185794,default/hello-00001-deployment-84c48648dc-kz8cq,20.556032
+I0922 16:33:31.159817,default/hello-00001-deployment-84c48648dc-ttq76,7.711887
+I0922 16:36:17.597738,default/hello-00001-deployment-84c48648dc-zcbhn,4.671973
+I0922 16:36:21.152876,default/hello-00001-deployment-84c48648dc-bqddj,7.246712
+I0922 16:36:21.191765,default/hello-00001-deployment-84c48648dc-cc5zk,17.116221
+I0922 16:39:28.135086,default/hello-00001-deployment-84c48648dc-r84h2,6.023214
+I0922 16:39:31.159831,default/hello-00001-deployment-84c48648dc-qmzg2,8.934365
+I0922 16:39:31.164773,default/hello-00001-deployment-84c48648dc-m8xfv,10.058233
+I0922 16:39:35.158032,default/hello-00001-deployment-84c48648dc-76f2p,5.360019
+I0922 16:42:22.609836,default/hello-00001-deployment-84c48648dc-crwd2,5.022181
+I0922 16:42:25.203541,default/hello-00001-deployment-84c48648dc-56w69,9.055662
+I0922 16:42:25.256143,default/hello-00001-deployment-84c48648dc-xrt4c,15.125746
+I0922 16:42:25.256248,default/hello-00001-deployment-84c48648dc-s4ccn,24.505876
+I0922 16:45:06.608871,default/hello-00001-deployment-84c48648dc-lzxw8,4.459117
+I0922 16:45:09.159065,default/hello-00001-deployment-84c48648dc-fllhv,6.631073
+I0922 16:45:09.264297,default/hello-00001-deployment-84c48648dc-fsn4z,4.199373
+I0922 16:45:11.162956,default/hello-00001-deployment-84c48648dc-dntr2,8.751158

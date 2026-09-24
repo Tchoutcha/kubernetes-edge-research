@@ -1,0 +1,7 @@
+numpy
+onnxruntime
+pillow
+psutil
+py-cpuinfo
+fastapi
+uvicorn

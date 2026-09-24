@@ -1,0 +1,89 @@
+I0414 14:40:06.254518       1 serving.go:386] Generated self-signed cert in-memory
+W0414 14:40:06.255130       1 client_config.go:683] Neither --kubeconfig nor --master was specified.  Using the inClusterConfig.  This might not work.
+I0414 14:40:06.275279       1 scheduler.go:283] ===  SCHEDULer New  ===
+I0414 14:40:06.277268       1 scheduler.go:457] "fonction New() construit le scheduler, mais ne commence pas à scheduler les pods, c'est la fonction Run() qui commence le scheduling des pods." duration ="1.947438ms"
+I0414 14:40:06.279790       1 server.go:175] "Starting Kubernetes Scheduler" version="v0.0.0-master+$Format:%H$"
+I0414 14:40:06.279816       1 server.go:177] "Golang settings" GOGC="" GOMAXPROCS="" GOTRACEBACK=""
+I0414 14:40:06.286938       1 requestheader_controller.go:180] Starting RequestHeaderAuthRequestController
+I0414 14:40:06.286963       1 shared_informer.go:375] "Waiting for caches to sync"
+I0414 14:40:06.286968       1 configmap_cafile_content.go:205] "Starting controller" name="client-ca::kube-system::extension-apiserver-authentication::client-ca-file"
+I0414 14:40:06.286970       1 configmap_cafile_content.go:205] "Starting controller" name="client-ca::kube-system::extension-apiserver-authentication::requestheader-client-ca-file"
+I0414 14:40:06.286980       1 shared_informer.go:375] "Waiting for caches to sync"
+I0414 14:40:06.286986       1 shared_informer.go:375] "Waiting for caches to sync"
+I0414 14:40:06.287167       1 secure_serving.go:211] Serving securely on [::]:10259
+I0414 14:40:06.287237       1 tlsconfig.go:243] "Starting DynamicServingCertificateController"
+I0414 14:40:06.387612       1 shared_informer.go:382] "Caches are synced"
+I0414 14:40:06.387621       1 shared_informer.go:382] "Caches are synced"
+I0414 14:40:06.387692       1 shared_informer.go:382] "Caches are synced"
+I0414 14:40:06.788818       1 scheduler.go:542] ===  SCHEDULing RUN ===
+I0414 14:40:06.788863       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:34.523371       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:34.529353       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:34.530380       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:34.531146       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:34.547662       1 schedule_one.go:166] "scheduling algorithm completed" duration ="26.25061ms" pod="default/genmatrix-00001-deployment-57fdd67855-w9m8m"
+I0414 14:42:34.650420       1 schedule_one.go:166] "scheduling algorithm completed" duration ="121.765868ms" pod="default/graphgen-00001-deployment-f5bfdc858-bwzh2"
+I0414 14:42:34.660652       1 schedule_one.go:166] "scheduling algorithm completed" duration ="131.008772ms" pod="default/fastfouriertransform-00001-deployment-7f6c4dd4f-4n62x"
+I0414 14:42:34.694748       1 schedule_one.go:166] "scheduling algorithm completed" duration ="164.287791ms" pod="default/grayscale-00001-deployment-5875667469-hxgk2"
+I0414 14:42:34.772592       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:34.794828       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:34.814012       1 schedule_one.go:166] "scheduling algorithm completed" duration ="19.95426ms" pod="default/resnet-00001-deployment-5ccbb786c-dclbk"
+I0414 14:42:34.816032       1 schedule_one.go:166] "scheduling algorithm completed" duration ="44.964438ms" pod="default/pagerank-00001-deployment-669c956d7d-2wl4q"
+I0414 14:42:36.263004       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:36.277973       1 schedule_one.go:166] "scheduling algorithm completed" duration ="15.595902ms" pod="default/mobilenet-00001-deployment-69d9c64d47-zll9v"
+I0414 14:42:36.301724       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:36.313860       1 schedule_one.go:166] "scheduling algorithm completed" duration ="12.721923ms" pod="default/linpack-00001-deployment-59cb5bb6f4-v6lcs"
+I0414 14:42:36.436426       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:36.484646       1 schedule_one.go:166] "scheduling algorithm completed" duration ="49.319554ms" pod="default/matrixmul-00001-deployment-5975545bc-wzbwz"
+I0414 14:42:38.266861       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:38.280107       1 schedule_one.go:166] "scheduling algorithm completed" duration ="14.062134ms" pod="default/fastfouriertransform-00001-deployment-7f6c4dd4f-5gvkf"
+I0414 14:42:38.293730       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:38.318934       1 schedule_one.go:166] "scheduling algorithm completed" duration ="25.844349ms" pod="default/fetchdata-00001-deployment-95bdf5d98-56kwf"
+I0414 14:42:40.289069       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:40.294133       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:40.305491       1 schedule_one.go:166] "scheduling algorithm completed" duration ="17.45432ms" pod="default/fastfouriertransform-00001-deployment-7f6c4dd4f-vftwj"
+I0414 14:42:40.308149       1 schedule_one.go:166] "scheduling algorithm completed" duration ="14.892879ms" pod="default/pagerank-00001-deployment-669c956d7d-2k9dj"
+I0414 14:42:42.274331       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:42.287872       1 schedule_one.go:166] "scheduling algorithm completed" duration ="14.320192ms" pod="default/graphgen-00001-deployment-f5bfdc858-ktl7g"
+I0414 14:42:42.290418       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:42.312463       1 schedule_one.go:166] "scheduling algorithm completed" duration ="22.802201ms" pod="default/grayscale-00001-deployment-5875667469-bq8ls"
+I0414 14:42:42.391870       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:42:42.408054       1 schedule_one.go:166] "scheduling algorithm completed" duration ="17.130059ms" pod="default/mobilenet-00001-deployment-69d9c64d47-4czts"
+I0414 14:43:40.350533       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:43:40.364020       1 schedule_one.go:166] "scheduling algorithm completed" duration ="14.178968ms" pod="default/grayscale-00001-deployment-5875667469-vw567"
+I0414 14:44:40.385897       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:44:40.401581       1 schedule_one.go:166] "scheduling algorithm completed" duration ="16.30283ms" pod="default/grayscale-00001-deployment-5875667469-7mclj"
+I0414 14:44:44.262398       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:44:44.271134       1 schedule_one.go:166] "scheduling algorithm completed" duration ="9.535367ms" pod="default/grayscale-00001-deployment-5875667469-sn9lw"
+I0414 14:53:17.019002       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:53:17.025923       1 schedule_one.go:166] "scheduling algorithm completed" duration ="7.514854ms" pod="default/fastfouriertransform-00001-deployment-7f6c4dd4f-m7hlf"
+I0414 14:53:17.052946       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:53:17.065481       1 schedule_one.go:166] "scheduling algorithm completed" duration ="13.166105ms" pod="default/grayscale-00001-deployment-5875667469-j7bhz"
+I0414 14:53:17.172682       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:53:17.232157       1 schedule_one.go:166] "scheduling algorithm completed" duration ="60.110497ms" pod="default/genmatrix-00001-deployment-57fdd67855-9kl9f"
+I0414 14:53:17.340789       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:53:17.348999       1 schedule_one.go:166] "scheduling algorithm completed" duration ="8.874231ms" pod="default/pagerank-00001-deployment-669c956d7d-9zg7g"
+I0414 14:53:17.448990       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:53:17.456637       1 schedule_one.go:166] "scheduling algorithm completed" duration ="8.169691ms" pod="default/resnet-00001-deployment-5ccbb786c-n4lbc"
+I0414 14:53:17.605533       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:53:17.629002       1 schedule_one.go:166] "scheduling algorithm completed" duration ="24.020773ms" pod="default/graphgen-00001-deployment-f5bfdc858-mdhz6"
+I0414 14:53:18.432680       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:53:18.438282       1 schedule_one.go:166] "scheduling algorithm completed" duration ="6.32657ms" pod="default/matrixmul-00001-deployment-5975545bc-m7nkq"
+I0414 14:53:18.975355       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:53:18.997922       1 schedule_one.go:166] "scheduling algorithm completed" duration ="23.29038ms" pod="default/linpack-00001-deployment-59cb5bb6f4-4vnd2"
+I0414 14:53:19.250248       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:53:19.256346       1 schedule_one.go:166] "scheduling algorithm completed" duration ="6.90498ms" pod="default/mobilenet-00001-deployment-69d9c64d47-gf786"
+I0414 14:53:20.830813       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:53:20.841263       1 schedule_one.go:166] "scheduling algorithm completed" duration ="11.033446ms" pod="default/fetchdata-00001-deployment-95bdf5d98-kcff2"
+I0414 14:53:24.278841       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:53:24.290103       1 schedule_one.go:166] "scheduling algorithm completed" duration ="13.392218ms" pod="default/pagerank-00001-deployment-669c956d7d-zbzm4"
+I0414 14:53:26.275750       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:53:26.277971       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:53:26.288934       1 schedule_one.go:166] "scheduling algorithm completed" duration ="14.14537ms" pod="default/graphgen-00001-deployment-f5bfdc858-xwj8z"
+I0414 14:53:26.372602       1 schedule_one.go:166] "scheduling algorithm completed" duration ="95.444792ms" pod="default/grayscale-00001-deployment-5875667469-vwzz9"
+I0414 14:53:28.266604       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:53:28.277493       1 schedule_one.go:166] "scheduling algorithm completed" duration ="11.789469ms" pod="default/pagerank-00001-deployment-669c956d7d-4scv2"
+I0414 14:54:30.674910       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:54:30.681659       1 schedule_one.go:166] "scheduling algorithm completed" duration ="7.476595ms" pod="default/grayscale-00001-deployment-5875667469-x86kk"
+I0414 14:56:00.637431       1 schedule_one.go:67] === MON SCHEDULER MODIFIÉ EST EN TRAIN DE TOURNER ===
+I0414 14:56:00.642260       1 schedule_one.go:166] "scheduling algorithm completed" duration ="5.674547ms" pod="default/grayscale-00001-deployment-5875667469-d8mmc"
